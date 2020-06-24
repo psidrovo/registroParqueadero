@@ -19,11 +19,11 @@ public class Cliente {
     private String apellido;
     private String direccion;
     private String telefono;
-    private List<Vehiculo> vehiculo;
+    private List<Vehiculo> vehiculos;
 
     //constructor
     public Cliente() {
-        vehiculo=new ArrayList<>();
+        vehiculos=new ArrayList<>();
     }
 
     public Cliente(String cedula, String nombre, String apellido, String direccion, String telefono) {
@@ -32,7 +32,7 @@ public class Cliente {
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
-        vehiculo=new ArrayList<>();
+        vehiculos=new ArrayList<>();
     }
     
     
@@ -78,20 +78,32 @@ public class Cliente {
         this.telefono = telefono;
     }
     
-    public void agregarVehiculo(/*anadir tipo*/){
+    public void agregarVehiculo(Vehiculo vehiculo){
+        vehiculos.add(vehiculo);
+    }
+    public void editarVehiculo(Vehiculo vehiculo){
+        if(vehiculos.contains(vehiculo)){
+        int index=vehiculos.indexOf(vehiculo);
+        vehiculos.set(index, vehiculo);
+    }
         
     }
-    public void editarVehiculo(/*anadir tipo*/){
-        
+    public void eliminarVehiculo(Vehiculo vehiculo){
+       if(vehiculos.contains(vehiculo)){
+        int index=vehiculos.indexOf(vehiculo);
+        vehiculos.remove(index);
+    } 
     }
-    public void eliminarVehiculo(/*anadir tipo*/){
-        
+    public Vehiculo verVehiculo(String placa){
+        for (Vehiculo vehiculo : vehiculos) {
+            if(vehiculo.getPlaca().equals(placa)){
+                return vehiculo;
+            }
+        }
+        return null;
     }
-    public void verVehiculo(/*anadir tipo*/){
-        
-    }
-    public void listarVehiculo(/*anadir tipo*/){
-        
+    public List<Vehiculo> listarVehiculo(){
+        return vehiculos;
     }
 
     //hashCode y equals
