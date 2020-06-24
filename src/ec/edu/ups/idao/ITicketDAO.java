@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.dao;
+package ec.edu.ups.idao;
 
 /**
  *
- * @author Paul Idrovo
+ * @author Dutan2000
  */
-public class daoCliente {
+public interface ITicketDAO {
     
 }

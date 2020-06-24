@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.controlador;
+package ec.edu.ups.dao;
 
 /**
  *
  * @author Paul Idrovo
  */
-public class controladorCliente {
+public class ClienteDAO {
     
 }
