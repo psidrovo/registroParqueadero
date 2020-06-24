@@ -102,7 +102,7 @@ public class Cliente {
         }
         return null;
     }
-    public List<Vehiculo> listarVehiculo(){
+    public List<Vehiculo> listarVehiculos(){
         return vehiculos;
     }
 

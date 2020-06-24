@@ -6,6 +6,7 @@
 package ec.edu.ups.controlador;
 import ec.edu.ups.idao.*;
 import ec.edu.ups.modelo.*;
+import java.util.List;
 /**
  *
  * @author Paul Idrovo
@@ -49,11 +50,34 @@ public class ControladorCliente {
         return cliente;
     }
     
-    //public void listarClientes(){
-        
-    //}
+    public void crearVehiculo(String placa, String marca, String modelo){
+        vehiculo=new Vehiculo(placa, marca, modelo);
+        vehiculoDAO.create(vehiculo);
+        cliente.agregarVehiculo(vehiculo);
+        clienteDAO.update(cliente);
+    }
     
+    public void editarVehiculo(String placa, String marca, String modelo){
+        vehiculo=new Vehiculo(placa, marca, modelo);
+        vehiculoDAO.update(vehiculo);
+        cliente.editarVehiculo(vehiculo);
+        clienteDAO.update(cliente);
+    }
     
+    public void eliminarVehiculo(String placa){
+        vehiculo=vehiculoDAO.read(placa);
+        vehiculoDAO.delete(vehiculo);
+        cliente.eliminarVehiculo(vehiculo);
+        clienteDAO.update(cliente);
+    }
     
+    public Vehiculo buscarVehiculo(String placa){
+        vehiculo=cliente.verVehiculo(placa);
+        return vehiculo;
+    }
     
+    public List<Vehiculo> listarVehiculos(){
+        return cliente.listarVehiculos();
+    }
+      
 }
