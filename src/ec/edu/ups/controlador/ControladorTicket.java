@@ -12,6 +12,7 @@ import ec.edu.ups.modelo.Cliente;
 import ec.edu.ups.modelo.Ticket;
 import ec.edu.ups.modelo.Vehiculo;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -35,13 +36,15 @@ public class ControladorTicket {
     
     public void ingresoVehiculoTicket(int numero, Date fechaDeIngreso, String placa){
         vehiculo=vehiculoDAO.read(placa);
-        ticket=new Ticket(numero, fechaDeIngreso, null, numero, vehiculo);
+        ticket=new Ticket(numero, fechaDeIngreso, null, 0.00, vehiculo);
     }
     
-    public void salidaVehiculoTicket(int numero, Date fechaDeSalida, String placa){
-        vehiculo=vehiculoDAO.read(placa);
-        ticket=new Ticket(numero, null, fechaDeSalida, numero, vehiculo);
-        ticketDAO.delete(ticket);
+    public void salidaVehiculoTicket(int numero, Date fechaDeSalida){
+        //vehiculo=vehiculoDAO.read(placa);
+        ticket=ticketDAO.read(numero);
+        ticket.setFechaHoraSalida(fechaDeSalida);
+        ticketDAO.update(ticket);
+        //ticketDAO.delete(ticket);
     }
     
     public Ticket verTicketPorCodigo(int numero){
@@ -55,10 +58,21 @@ public class ControladorTicket {
   
     }
     
+    public List<Ticket> listaIngresoDeTickets(){
+        
+        return ticketDAO.listaDeTicketSegunTipo("Ingreso");
+    }
+    
+    public List<Ticket> listaSalidaDeTickets(){
+        return ticketDAO.listaDeTicketSegunTipo("Salida");
+    }
+    
     public int obtenerSiguienteCodigo(){
         int codigo=ticketDAO.obtenerUltimoCodigo();
         return ++codigo;
     }
+    
+    
     
     
 }
