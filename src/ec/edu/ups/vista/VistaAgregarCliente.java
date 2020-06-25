@@ -5,17 +5,26 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
+
 /**
  *
  * @author Paul Idrovo
  */
 public class VistaAgregarCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form vistaAgregarCliente
-     */
-    public VistaAgregarCliente() {
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+
+    public VistaAgregarCliente(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
+
+        this.controladorCliente = controladorCliente;
+        this.controladorTicket = controladorTicket;
+        this.controladorVehiculo = controladorVehiculo;
     }
 
     /**

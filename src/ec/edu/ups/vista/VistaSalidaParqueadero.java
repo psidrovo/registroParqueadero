@@ -5,6 +5,9 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,11 +16,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VistaSalidaParqueadero
-     */
-    public VistaSalidaParqueadero() {
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+    
+    public VistaSalidaParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
+        
+        this.controladorCliente = controladorCliente;
+        this.controladorTicket = controladorTicket;
+        this.controladorVehiculo = controladorVehiculo;
     }
 
     /**

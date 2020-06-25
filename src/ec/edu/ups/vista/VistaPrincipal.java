@@ -5,40 +5,68 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.dao.ClienteDAO;
+import ec.edu.ups.dao.TicketDAO;
+import ec.edu.ups.dao.VehiculoDAO;
+import ec.edu.ups.idao.IClienteDAO;
+import ec.edu.ups.idao.ITicketDAO;
+import ec.edu.ups.idao.IVehiculoDAO;
+
 /**
  *
  * @author Paul Idrovo
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
+    //Vistas
     private VistaAgregarCliente vistaAgregarCliente;
     private VistaAgregarVehiculo vistaAgregarVehiculo;
     private VistaIngresoParqueadero vistaIngresoParqueadero;
     private VistaSalidaParqueadero vistaSalidaParqueadero;
+    //Dao
+    private IClienteDAO clienteDao;
+    private ITicketDAO ticketDao;
+    private IVehiculoDAO vehiculoDao;
+    //Controladores
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
 
     public VistaPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
 
+        //Inicializar Dao
+        this.clienteDao = new ClienteDAO();
+        this.ticketDao = new TicketDAO();
+        this.vehiculoDao = new VehiculoDAO();
+        //Inicializar controladores
+        this.controladorCliente = new ControladorCliente(clienteDao, ticketDao, vehiculoDao);
+        this.controladorTicket = new ControladorTicket(clienteDao, ticketDao, vehiculoDao);
+        this.controladorVehiculo = new ControladorVehiculo(clienteDao, ticketDao, vehiculoDao);
+
         //Vistas
-        vistaAgregarCliente = new VistaAgregarCliente();
-        vistaAgregarVehiculo = new VistaAgregarVehiculo();
-        vistaIngresoParqueadero = new VistaIngresoParqueadero();
-        vistaSalidaParqueadero = new VistaSalidaParqueadero();
-
-        desktopPane.add(vistaAgregarCliente);
-        desktopPane.add(vistaAgregarVehiculo);
-        desktopPane.add(vistaIngresoParqueadero);
-        desktopPane.add(vistaSalidaParqueadero);
+        this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo);
+        this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo);
+        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
+        this.vistaSalidaParqueadero = new VistaSalidaParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
+        //Agregar desktopPane
+        this.desktopPane.add(vistaAgregarCliente);
+        this.desktopPane.add(vistaAgregarVehiculo);
+        this.desktopPane.add(vistaIngresoParqueadero);
+        this.desktopPane.add(vistaSalidaParqueadero);
     }
 
-    private void Ocultar(){
-        vistaAgregarCliente.setVisible(false);
-        vistaAgregarVehiculo.setVisible(false);
-        vistaIngresoParqueadero.setVisible(false);
-        vistaSalidaParqueadero.setVisible(false);
+    private void Ocultar() {
+        this.vistaAgregarCliente.setVisible(false);
+        this.vistaAgregarVehiculo.setVisible(false);
+        this.vistaIngresoParqueadero.setVisible(false);
+        this.vistaSalidaParqueadero.setVisible(false);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,11 +156,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);        
+        System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void mnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIngresarActionPerformed
-        vistaIngresoParqueadero.setVisible(true);
+        this.vistaIngresoParqueadero.setVisible(true);
     }//GEN-LAST:event_mnIngresarActionPerformed
 
     /**
