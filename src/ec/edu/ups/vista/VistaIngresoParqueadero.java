@@ -5,6 +5,9 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,11 +17,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form vistaIngresoParqueadero
-     */
-    public VistaIngresoParqueadero() {
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+
+    public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
+
+        this.controladorCliente = controladorCliente;
+        this.controladorTicket = controladorTicket;
+        this.controladorVehiculo = controladorVehiculo;
     }
 
     /**
@@ -125,9 +133,9 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         modelo.addColumn("");
         modelo.addColumn("");
         modelo.addColumn("");
-        
+
         tblTickets.setModel(modelo);
-       /* Object[] fila = new Object[4];
+        /* Object[] fila = new Object[4];
 
         for (Telefono telefono : listaTelefonos) {
             fila[0] = telefono.getCodigo();

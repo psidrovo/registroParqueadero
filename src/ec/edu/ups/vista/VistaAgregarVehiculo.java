@@ -5,17 +5,26 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
+
 /**
  *
  * @author Paul Idrovo
  */
 public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form AgregarVehiculo
-     */
-    public VistaAgregarVehiculo() {
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+
+    public VistaAgregarVehiculo(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
+
+        this.controladorCliente = controladorCliente;
+        this.controladorTicket = controladorTicket;
+        this.controladorVehiculo = controladorVehiculo;
     }
 
     /**
@@ -148,7 +157,7 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-        
+
     }//GEN-LAST:event_btRegistrarActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
