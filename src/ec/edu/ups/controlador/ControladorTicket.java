@@ -34,9 +34,11 @@ public class ControladorTicket {
     }
     
     
-    public void ingresoVehiculoTicket(int numero, Date fechaDeIngreso, String placa){
+    public void ingresoVehiculoTicket(Date fechaDeIngreso, String placa){
+        int numero = ticketDAO.obtenerUltimoCodigo()+1;
         vehiculo=vehiculoDAO.read(placa);
         ticket=new Ticket(numero, fechaDeIngreso, null, 0.00, vehiculo);
+        ticketDAO.create(ticket);
     }
     
     public void salidaVehiculoTicket(int numero, Date fechaDeSalida){

@@ -18,11 +18,9 @@ import java.util.List;
 public class TicketDAO implements ITicketDAO {
 
     private List<Ticket> listaTicket;
-    private int codigo;
 
     public TicketDAO() {
         listaTicket = new ArrayList<Ticket>();
-        codigo = 0;
     }
 
     @Override
@@ -83,6 +81,6 @@ public class TicketDAO implements ITicketDAO {
 
     @Override
     public int obtenerUltimoCodigo() {
-        return codigo;
+        return listaTicket.size();
     }
 }

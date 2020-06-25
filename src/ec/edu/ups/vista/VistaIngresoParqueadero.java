@@ -8,6 +8,15 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
+import java.awt.Dimension;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,12 +30,14 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
 
-    public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
-        initComponents();
+    private VistaAgregarVehiculo vistaAgregarVehiculo;
 
+    public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo) {
+        initComponents();
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
+        this.vistaAgregarVehiculo = vistaAgregarVehiculo;
     }
 
     /**
@@ -38,10 +49,11 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPlaca = new javax.swing.JLabel();
-        ftxPlaca = new javax.swing.JFormattedTextField();
+        pnIngresarTicket = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTickets = new javax.swing.JTable();
+        ftxPlaca = new javax.swing.JFormattedTextField();
+        lblPlaca = new javax.swing.JLabel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -61,15 +73,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
             }
         });
 
-        lblPlaca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblPlaca.setText("PLACA:");
-
-        try {
-            ftxPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        ftxPlaca.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        pnIngresarTicket.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INGRESAR TICKET", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
 
         tblTickets.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         tblTickets.setModel(new javax.swing.table.DefaultTableModel(
@@ -88,70 +92,162 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblTickets.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(tblTickets);
+        if (tblTickets.getColumnModel().getColumnCount() > 0) {
+            tblTickets.getColumnModel().getColumn(0).setMinWidth(20);
+            tblTickets.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblTickets.getColumnModel().getColumn(0).setMaxWidth(200);
+            tblTickets.getColumnModel().getColumn(1).setMinWidth(20);
+            tblTickets.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblTickets.getColumnModel().getColumn(1).setMaxWidth(200);
+            tblTickets.getColumnModel().getColumn(2).setMinWidth(20);
+            tblTickets.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblTickets.getColumnModel().getColumn(2).setMaxWidth(200);
+            tblTickets.getColumnModel().getColumn(3).setMinWidth(20);
+            tblTickets.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblTickets.getColumnModel().getColumn(3).setMaxWidth(200);
+        }
+
+        try {
+            ftxPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ftxPlaca.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        ftxPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftxPlacaKeyTyped(evt);
+            }
+        });
+
+        lblPlaca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPlaca.setText("PLACA:");
+
+        javax.swing.GroupLayout pnIngresarTicketLayout = new javax.swing.GroupLayout(pnIngresarTicket);
+        pnIngresarTicket.setLayout(pnIngresarTicketLayout);
+        pnIngresarTicketLayout.setHorizontalGroup(
+            pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1296, Short.MAX_VALUE)
+            .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
+                        .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                            .addComponent(lblPlaca)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+        pnIngresarTicketLayout.setVerticalGroup(
+            pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPlaca)
+                        .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPlaca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
+                .addContainerGap()
+                .addComponent(pnIngresarTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlaca)
-                    .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(pnIngresarTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        listarTickets();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void ftxPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxPlacaKeyTyped
+        char validar = evt.getKeyChar();
+        if (validar == '\n') {
+            if (ftxPlaca.getValue() != null) {
+                if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
+                    Calendar c = Calendar.getInstance();
+                    controladorTicket.ingresoVehiculoTicket(c.getTime(),ftxPlaca.getValue().toString());
+                    listarTickets();
+                } else {
+                    int confirmar = JOptionPane.showConfirmDialog(null,
+                            "<html>NO EXISTE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> DESEA REGISTRAR LA NUEVA PLACA?</html>");
+
+                    if (JOptionPane.OK_OPTION == confirmar) {
+                        this.setVisible(false);
+                        vistaAgregarVehiculo.setPlaca(ftxPlaca.getValue());
+                        vistaAgregarVehiculo.setVisible(true);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "PLACA NO VALIDA", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ftxPlacaKeyTyped
+
+    public void listarTickets(){
         DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
         modelo.setColumnCount(0);
         modelo.setRowCount(0);
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-
-        tblTickets.setModel(modelo);
-        /* Object[] fila = new Object[4];
-
-        for (Telefono telefono : listaTelefonos) {
-            fila[0] = telefono.getCodigo();
-            fila[1] = telefono.getNumero();
-            fila[2] = telefono.getTipo();
-            fila[3] = telefono.getOperadora();
-            modelo.addRow(fila);
-        }*/
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("FEHCA INGRESO");
+        modelo.addColumn("FECHA SALIDA");
+        modelo.addColumn("PLACA");
+        modelo.addColumn("MARCA");
+        modelo.addColumn("MODELO");
+        modelo.addColumn("CEDULA");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("DIRECCION");
+        modelo.addColumn("TELEFONO");
+       
         this.tblTickets.setModel(modelo);
-    }//GEN-LAST:event_formInternalFrameActivated
+         Object[] fila = new Object[10];
 
+        for (Ticket datosTicket : controladorTicket.listaIngresoDeTickets()) {
+            fila[0] = datosTicket.getNumero();
+            fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
+            fila[2] = "----";
+            Vehiculo datosVehiculo = datosTicket.getVehiculoTicket();
+            fila[3] = datosVehiculo.getPlaca();
+            fila[4] = datosVehiculo.getModelo();
+            fila[5] = datosVehiculo.getPlaca();
+            Cliente datosCliente = controladorCliente.verClientePlaca(datosVehiculo.getPlaca());
+            fila[6] = datosCliente.getCedula();
+            fila[7] = datosCliente.getNombre();
+            fila[8] = datosCliente.getDireccion();
+            fila[9] = datosCliente.getTelefono();
+            modelo.addRow(fila);
+        }
+        this.tblTickets.setModel(modelo);
+    }
+    public String fechaActual(Date fecha) {
+        String strDateFormat = "dd-MM-yyyy HH: mm: ss";
+        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+        return objSDF.format(fecha);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField ftxPlaca;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblPlaca;
+    private javax.swing.JPanel pnIngresarTicket;
     private javax.swing.JTable tblTickets;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,4 +18,5 @@ public interface IClienteDAO {
     public void update(Cliente cliente);
     public void delete(Cliente cliente);   
     public List<Cliente> findAll();
+    public Cliente encontrarPlaca(String placa);
 }

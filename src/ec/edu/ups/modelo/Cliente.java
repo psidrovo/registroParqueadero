@@ -16,7 +16,6 @@ import java.util.Objects;
 public class Cliente {
     private String cedula;
     private String nombre;
-    private String apellido;
     private String direccion;
     private String telefono;
     private List<Vehiculo> vehiculos;
@@ -26,10 +25,9 @@ public class Cliente {
         vehiculos=new ArrayList<>();
     }
 
-    public Cliente(String cedula, String nombre, String apellido, String direccion, String telefono) {
+    public Cliente(String cedula, String nombre, String direccion, String telefono) {
         this.cedula = cedula;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
         vehiculos=new ArrayList<>();
@@ -52,14 +50,6 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getDireccion() {

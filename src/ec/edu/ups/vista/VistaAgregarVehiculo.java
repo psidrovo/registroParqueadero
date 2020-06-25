@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,12 +20,17 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
 
-    public VistaAgregarVehiculo(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
+    private VistaAgregarCliente vistaAgregarCliente;
+    private VistaIngresoParqueadero vistaIngresoParqueadero;
+
+    public VistaAgregarVehiculo(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarCliente vistaAgregarCliente, VistaIngresoParqueadero vistaIngresoParqueadero) {
         initComponents();
 
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
+        this.vistaAgregarCliente = vistaAgregarCliente;
+        this.vistaIngresoParqueadero = vistaIngresoParqueadero;
     }
 
     /**
@@ -36,7 +42,7 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        pnVehiculo = new javax.swing.JPanel();
         btRegistrar = new javax.swing.JButton();
         lblMarca = new javax.swing.JLabel();
         lblModelo = new javax.swing.JLabel();
@@ -47,7 +53,7 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
         lblCedula = new javax.swing.JLabel();
         ftxPlaca = new javax.swing.JFormattedTextField();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VEHICULO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
+        pnVehiculo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VEHICULO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
 
         btRegistrar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/salvar.png"))); // NOI18N
@@ -91,49 +97,49 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
         ftxPlaca.setEnabled(false);
         ftxPlaca.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnVehiculoLayout = new javax.swing.GroupLayout(pnVehiculo);
+        pnVehiculo.setLayout(pnVehiculoLayout);
+        pnVehiculoLayout.setHorizontalGroup(
+            pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVehiculoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPlaca)
                     .addComponent(lblCedula)
                     .addComponent(lblMarca)
                     .addComponent(lblModelo))
                 .addGap(65, 65, 65)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btRegistrar)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtMarca)
                         .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(ftxPlaca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                         .addComponent(txtModelo)))
                 .addGap(20, 20, 20))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnVehiculoLayout.setVerticalGroup(
+            pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnVehiculoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCedula))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMarca))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtModelo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btRegistrar)
-                .addGap(19, 19, 19))
+                .addComponent(btRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,14 +148,14 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -157,22 +163,46 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-
+        controladorCliente.crearVehiculo(ftxPlaca.getValue().toString(), txtMarca.getText(), txtModelo.getText(),txtCedula.getText());
+        this.setVisible(false);
+        vistaIngresoParqueadero.setVisible(true);
     }//GEN-LAST:event_btRegistrarActionPerformed
 
+    public void setVistaIngresoParqueadero(VistaIngresoParqueadero vistaIngresoParqueadero){
+        this.vistaIngresoParqueadero = vistaIngresoParqueadero;
+    }
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char validar = evt.getKeyChar();
+        if (validar == '\n') {
+            if (controladorCliente.verCliente(txtCedula.getText()) != null) {
+                ftxPlaca.setEnabled(true);
+                txtMarca.setEnabled(true);
+                txtModelo.setEnabled(true);
+            } else {
+                int confirmar = JOptionPane.showConfirmDialog(null,
+                        "<html>NO EXISTE CEDULA <strong>" + txtCedula.getText() + "</strong> DESEA REGISTRAR AL CLIENTE?</html>");
 
+                if (JOptionPane.OK_OPTION == confirmar) {
+                    this.setVisible(false);
+                    vistaAgregarCliente.setCedulaVista(txtCedula.getText());
+                    vistaAgregarCliente.setVisible(true);
+                }
+            }
+        }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
+    public void setPlaca(Object placa){
+        ftxPlaca.setValue(placa);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrar;
     private javax.swing.JFormattedTextField ftxPlaca;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblMarca;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblPlaca;
+    private javax.swing.JPanel pnVehiculo;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;

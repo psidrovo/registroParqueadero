@@ -29,30 +29,35 @@ public class ControladorCliente {
 
     }
     
-    public void crearCliente(String cedula, String nombre, String apellido, String direccion, String telefono){
-        cliente=new Cliente(cedula, nombre, apellido, direccion, telefono);
+    public void crearCliente(String cedula, String nombre, String direccion, String telefono){
+        cliente=new Cliente(cedula, nombre, direccion, telefono);
         clienteDAO.create(cliente);
     }
     
-    public void editarCliente(String cedula, String nombre, String apellido, String direccion, String telefono){
-        cliente= new Cliente(cedula, nombre, apellido, direccion, telefono);
+    public void editarCliente(String cedula, String nombre, String direccion, String telefono){
+        cliente= new Cliente(cedula, nombre, direccion, telefono);
         clienteDAO.update(cliente);
     }
     
     public void eliminarCliente(String cedula){
-        cliente=new Cliente(cedula, null, null, null, null);
+        cliente=new Cliente(cedula, null, null, null);
         clienteDAO.delete(cliente);
     }
     
     public Cliente verCliente(String cedula){
-        cliente =clienteDAO.read(cedula);
-        
+        cliente =clienteDAO.read(cedula);        
         return cliente;
     }
     
-    public void crearVehiculo(String placa, String marca, String modelo){
+    public Cliente verClientePlaca(String placa){
+        cliente =clienteDAO.encontrarPlaca(placa);        
+        return cliente;
+    }
+    
+    public void crearVehiculo(String placa, String marca, String modelo, String cedula){
         vehiculo=new Vehiculo(placa, marca, modelo);
         vehiculoDAO.create(vehiculo);
+        cliente=clienteDAO.read(cedula);
         cliente.agregarVehiculo(vehiculo);
         clienteDAO.update(cliente);
     }

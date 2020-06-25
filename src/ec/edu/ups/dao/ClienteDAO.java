@@ -65,5 +65,15 @@ public class ClienteDAO implements IClienteDAO{
     public List<Cliente> findAll() {
         return listaClientes;
     }
+
+    @Override
+    public Cliente encontrarPlaca(String placa) {
+        for (Cliente listaCliente : listaClientes) {
+            if(listaCliente.verVehiculo(placa)!=null){
+                return listaCliente;
+            }
+        }
+        return null;
+    }
     
 }

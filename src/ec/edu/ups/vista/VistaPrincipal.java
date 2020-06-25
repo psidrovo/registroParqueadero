@@ -43,16 +43,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.clienteDao = new ClienteDAO();
         this.ticketDao = new TicketDAO();
         this.vehiculoDao = new VehiculoDAO();
+        
         //Inicializar controladores
         this.controladorCliente = new ControladorCliente(clienteDao, ticketDao, vehiculoDao);
         this.controladorTicket = new ControladorTicket(clienteDao, ticketDao, vehiculoDao);
         this.controladorVehiculo = new ControladorVehiculo(clienteDao, ticketDao, vehiculoDao);
 
         //Vistas
-        this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo);
-        this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo);
-        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
+        this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo,vistaAgregarVehiculo);
+        this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo,vistaAgregarCliente,vistaIngresoParqueadero);
+        this.vistaAgregarCliente.setVistaAgregarVehiculo(vistaAgregarVehiculo);
+        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo,vistaAgregarVehiculo);
+        this.vistaAgregarVehiculo.setVistaIngresoParqueadero(vistaIngresoParqueadero);
         this.vistaSalidaParqueadero = new VistaSalidaParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
+        
         //Agregar desktopPane
         this.desktopPane.add(vistaAgregarCliente);
         this.desktopPane.add(vistaAgregarVehiculo);

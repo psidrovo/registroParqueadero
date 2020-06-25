@@ -14,17 +14,20 @@ import ec.edu.ups.controlador.ControladorVehiculo;
  * @author Paul Idrovo
  */
 public class VistaAgregarCliente extends javax.swing.JInternalFrame {
-
+    
     private ControladorCliente controladorCliente;
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
-
-    public VistaAgregarCliente(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
+    
+    private VistaAgregarVehiculo vistaAgregarVehiculo;
+    
+    public VistaAgregarCliente(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo) {
         initComponents();
-
+        
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
+        this.vistaAgregarVehiculo = vistaAgregarVehiculo;
     }
 
     /**
@@ -36,18 +39,18 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        pnAgregarCliente = new javax.swing.JPanel();
         lblApellido = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtApellido = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
         btRegistrar = new javax.swing.JButton();
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CLIENTE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
+        pnAgregarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CLIENTE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
 
         lblApellido.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblApellido.setText("DIRECCION");
@@ -64,9 +67,9 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
 
         txtNombre.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
-        txtApellido.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
-        txtCorreo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         lblNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblNombre.setText("NOMBRE");
@@ -83,48 +86,48 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnAgregarClienteLayout = new javax.swing.GroupLayout(pnAgregarCliente);
+        pnAgregarCliente.setLayout(pnAgregarClienteLayout);
+        pnAgregarClienteLayout.setHorizontalGroup(
+            pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnAgregarClienteLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblCedula)
                     .addComponent(lblApellido)
                     .addComponent(lblCorreo))
                 .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtApellido)
-                    .addComponent(txtCorreo)
+                .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtDireccion)
+                    .addComponent(txtTelefono)
                     .addComponent(txtCedula)
                     .addComponent(txtNombre))
                 .addGap(15, 15, 15))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(pnAgregarClienteLayout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(btRegistrar)
                 .addGap(110, 110, 110))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnAgregarClienteLayout.setVerticalGroup(
+            pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnAgregarClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCedula))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNombre))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtApellido))
+                    .addComponent(txtDireccion))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCorreo))
+                    .addComponent(txtTelefono))
                 .addGap(18, 18, 18)
                 .addComponent(btRegistrar)
                 .addContainerGap())
@@ -136,15 +139,15 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnAgregarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10)
+                .addComponent(pnAgregarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -155,20 +158,28 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-
+        controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
+        this.setVisible(false);
+        vistaAgregarVehiculo.setVisible(true);
     }//GEN-LAST:event_btRegistrarActionPerformed
-
-
+    public void setCedulaVista(String cedula) {
+        txtCedula.setText(cedula);
+    }
+    
+    public void setVistaAgregarVehiculo(VistaAgregarVehiculo vistaAgregarVehiculo){
+        this.vistaAgregarVehiculo=vistaAgregarVehiculo;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrar;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JTextField txtApellido;
+    private javax.swing.JPanel pnAgregarCliente;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
