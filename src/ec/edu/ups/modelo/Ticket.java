@@ -69,5 +69,10 @@ public class Ticket {
     public void setVehiculoTicket(Vehiculo vehiculoTicket) {
         this.vehiculoTicket = vehiculoTicket;
     }
+    
+    public void CalcularTotal(){
+        this.setTotal(10);
+        
+    }
 
 }
