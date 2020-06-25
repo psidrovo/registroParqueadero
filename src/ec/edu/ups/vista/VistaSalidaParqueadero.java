@@ -171,6 +171,7 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
                     if (JOptionPane.OK_OPTION == confirmar) {
                         controladorTicket.salidaVehiculoTicket(codigo, c.getTime());
                         listarTickets();
+                        ftxCodigo.setValue("");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "TICKET NO EXISTENTE", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
@@ -198,9 +199,9 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
         modelo.addColumn("TELEFONO");
 
         this.tblTickets.setModel(modelo);
-        Object[] fila = new Object[11];
+        Object[] fila = new Object[12];
 
-        for (Ticket datosTicket : controladorTicket.listaIngresoDeTickets()) {
+        for (Ticket datosTicket : controladorTicket.listaSalidaDeTickets()) {
             fila[0] = datosTicket.getNumero();
             fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
             fila[2] = fechaActual(datosTicket.getFechaHoraSalida());

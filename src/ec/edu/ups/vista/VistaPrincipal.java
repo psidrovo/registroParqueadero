@@ -43,20 +43,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.clienteDao = new ClienteDAO();
         this.ticketDao = new TicketDAO();
         this.vehiculoDao = new VehiculoDAO();
-        
+
         //Inicializar controladores
         this.controladorCliente = new ControladorCliente(clienteDao, ticketDao, vehiculoDao);
         this.controladorTicket = new ControladorTicket(clienteDao, ticketDao, vehiculoDao);
         this.controladorVehiculo = new ControladorVehiculo(clienteDao, ticketDao, vehiculoDao);
 
         //Vistas
-        this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo,vistaAgregarVehiculo);
-        this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo,vistaAgregarCliente,vistaIngresoParqueadero);
+        this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo);
+        this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarCliente, vistaIngresoParqueadero);
         this.vistaAgregarCliente.setVistaAgregarVehiculo(vistaAgregarVehiculo);
-        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo,vistaAgregarVehiculo);
+        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo);
         this.vistaAgregarVehiculo.setVistaIngresoParqueadero(vistaIngresoParqueadero);
         this.vistaSalidaParqueadero = new VistaSalidaParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
-        
+
         //Agregar desktopPane
         this.desktopPane.add(vistaAgregarCliente);
         this.desktopPane.add(vistaAgregarVehiculo);
@@ -112,6 +112,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         saveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/enviado.png"))); // NOI18N
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Salir vehiculo");
+        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveMenuItem);
 
         exitMenuItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -164,8 +169,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void mnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIngresarActionPerformed
+        Ocultar();
         this.vistaIngresoParqueadero.setVisible(true);
     }//GEN-LAST:event_mnIngresarActionPerformed
+
+    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+        Ocultar();
+        this.vistaSalidaParqueadero.setVisible(true);
+    }//GEN-LAST:event_saveMenuItemActionPerformed
 
     /**
      * @param args the command line arguments

@@ -167,7 +167,7 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
         if (ftxPlaca.getValue() == null) {
             JOptionPane.showMessageDialog(null, "PLACA NO VALIDA", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (txtCedula.getText().equals("") && txtMarca.getText().equals("") && txtModelo.getText().equals("") && ftxPlaca.getValue().toString().equals("")) {
+            if (txtCedula.getText().equals("") || txtMarca.getText().equals("") || txtModelo.getText().equals("") || ftxPlaca.getValue().toString().equals("")) {
                 JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
             } else {
                 if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {

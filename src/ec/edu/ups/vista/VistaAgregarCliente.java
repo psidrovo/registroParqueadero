@@ -160,7 +160,7 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
 
-        if (txtCedula.getText().equals("") && txtDireccion.getText().equals("") && txtNombre.getText().equals("") && txtTelefono.getText().equals("")) {
+        if (txtCedula.getText().equals("") || txtDireccion.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
         } else {
             if (controladorCliente.verCliente(txtCedula.getText()) != null) {
