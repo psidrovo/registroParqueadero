@@ -169,10 +169,18 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
                 controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
                 this.setVisible(false);
                 vistaAgregarVehiculo.setVisible(true);
-                vistaAgregarVehiculo.setEditarCampos(txtCedula.getText());
+                vistaAgregarVehiculo.setEditarCamposRegresarCliente(txtCedula.getText());
+                limpiar();
             }
         }
     }//GEN-LAST:event_btRegistrarActionPerformed
+    public void limpiar() {
+        txtCedula.setText("");
+        txtDireccion.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
+    }
+
     public void setCedulaVista(String cedula) {
         txtCedula.setText(cedula);
     }

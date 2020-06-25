@@ -203,6 +203,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ftxPlacaKeyTyped
 
+    
     private void listarTickets(){
         DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
         modelo.setColumnCount(0);
