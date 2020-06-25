@@ -128,7 +128,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         pnIngresarTicket.setLayout(pnIngresarTicketLayout);
         pnIngresarTicketLayout.setHorizontalGroup(
             pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1832, Short.MAX_VALUE)
+            .addGap(0, 1830, Short.MAX_VALUE)
             .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnIngresarTicketLayout.createSequentialGroup()
                     .addContainerGap()
@@ -203,7 +203,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ftxPlacaKeyTyped
 
-    public void listarTickets(){
+    private void listarTickets(){
         DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
         modelo.setColumnCount(0);
         modelo.setRowCount(0);
@@ -236,7 +236,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         }
         this.tblTickets.setModel(modelo);
     }
-    public String fechaActual(Date fecha) {
+    private String fechaActual(Date fecha) {
         String strDateFormat = "dd-MM-yyyy HH: mm: ss";
         SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
         return objSDF.format(fecha);

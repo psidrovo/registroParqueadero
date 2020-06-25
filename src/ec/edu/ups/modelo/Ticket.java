@@ -17,6 +17,7 @@ public class Ticket {
     private Date fechaHoraIngreso;
     private Date fechaHoraSalida;
     private double total;
+    private int fracciones;
     private Vehiculo vehiculoTicket;
 
     public Ticket() {
@@ -27,6 +28,7 @@ public class Ticket {
         this.fechaHoraIngreso = fechaHoraIngreso;
         this.fechaHoraSalida = fechaHoraSalida;
         this.total = total;
+        this.fracciones = 0;
         this.vehiculoTicket = vehiculoTicket;
     }
 
@@ -62,6 +64,14 @@ public class Ticket {
         this.total = total;
     }
 
+    public int getFracciones() {
+        return fracciones;
+    }
+
+    public void setFracciones(int fracciones) {
+        this.fracciones = fracciones;
+    }
+
     public Vehiculo getVehiculoTicket() {
         return vehiculoTicket;
     }
@@ -69,10 +79,11 @@ public class Ticket {
     public void setVehiculoTicket(Vehiculo vehiculoTicket) {
         this.vehiculoTicket = vehiculoTicket;
     }
-    
-    public void CalcularTotal(){
+
+    public void CalcularTotal() {
         this.setTotal(10);
-        
+        this.setFracciones(20);
+
     }
 
 }

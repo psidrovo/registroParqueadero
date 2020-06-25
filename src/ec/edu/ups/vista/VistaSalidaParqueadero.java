@@ -8,6 +8,13 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,10 +26,10 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
     private ControladorCliente controladorCliente;
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
-    
+
     public VistaSalidaParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
-        
+
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
@@ -37,10 +44,11 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnIngresarTicket = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTickets = new javax.swing.JTable();
-        lblCodigo = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        ftxCodigo = new javax.swing.JFormattedTextField();
+        lblPlaca = new javax.swing.JLabel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -60,6 +68,8 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
             }
         });
 
+        pnIngresarTicket.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SALIDA TICKET", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
+
         tblTickets.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         tblTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,75 +87,150 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblTickets.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(tblTickets);
 
-        lblCodigo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblCodigo.setText("CODIGO");
+        ftxCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        ftxCodigo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        ftxCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ftxCodigoKeyTyped(evt);
+            }
+        });
 
-        txtCodigo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        lblPlaca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPlaca.setText("CODIGO:");
+
+        javax.swing.GroupLayout pnIngresarTicketLayout = new javax.swing.GroupLayout(pnIngresarTicket);
+        pnIngresarTicket.setLayout(pnIngresarTicketLayout);
+        pnIngresarTicketLayout.setHorizontalGroup(
+            pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(ftxCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1636, 1636, 1636))
+            .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1812, Short.MAX_VALUE)
+                        .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                            .addComponent(lblPlaca)
+                            .addGap(0, 1736, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+        pnIngresarTicketLayout.setVerticalGroup(
+            pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ftxCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(622, 622, 622))
+            .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lblPlaca)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
+                .addContainerGap()
+                .addComponent(pnIngresarTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodigo)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(pnIngresarTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        listarTickets();
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void ftxCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxCodigoKeyTyped
+        char validar = evt.getKeyChar();
+        if (validar == '\n') {
+            if (ftxCodigo.getValue() != null) {
+                int codigo = Integer.valueOf(ftxCodigo.getValue().toString());
+                if (controladorTicket.verTicketPorCodigo(codigo) != null) {
+                    Calendar c = Calendar.getInstance();
+                    Ticket mensaje = controladorTicket.calcularPago(codigo, c.getTime());
+                    int confirmar = JOptionPane.showConfirmDialog(null,
+                            "<html>EL VALOR A PAGAR ES <strong>" + mensaje.getTotal() + "</strong> DE <strong>" + mensaje.getFracciones() + "</strong> FRACCIONES. DESEA CONTINUAR?</html>");
+
+                    if (JOptionPane.OK_OPTION == confirmar) {
+                        controladorTicket.salidaVehiculoTicket(codigo, c.getTime());
+                        listarTickets();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "TICKET NO EXISTENTE", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "FORMATO DE CODIGO NO VALIDO", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ftxCodigoKeyTyped
+    private void listarTickets() {
         DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
         modelo.setColumnCount(0);
         modelo.setRowCount(0);
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        
-        tblTickets.setModel(modelo);
-       /* Object[] fila = new Object[4];
+        modelo.addColumn("CODIGO");
+        modelo.addColumn("FEHCA INGRESO");
+        modelo.addColumn("FEHCA SALIDA");
+        modelo.addColumn("TOTAL");
+        modelo.addColumn("FRACCIONES");
+        modelo.addColumn("PLACA");
+        modelo.addColumn("MARCA");
+        modelo.addColumn("MODELO");
+        modelo.addColumn("CEDULA");
+        modelo.addColumn("NOMBRE");
+        modelo.addColumn("DIRECCION");
+        modelo.addColumn("TELEFONO");
 
-        for (Telefono telefono : listaTelefonos) {
-            fila[0] = telefono.getCodigo();
-            fila[1] = telefono.getNumero();
-            fila[2] = telefono.getTipo();
-            fila[3] = telefono.getOperadora();
-            modelo.addRow(fila);
-        }*/
         this.tblTickets.setModel(modelo);
-    }//GEN-LAST:event_formInternalFrameActivated
+        Object[] fila = new Object[11];
 
+        for (Ticket datosTicket : controladorTicket.listaIngresoDeTickets()) {
+            fila[0] = datosTicket.getNumero();
+            fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
+            fila[2] = fechaActual(datosTicket.getFechaHoraSalida());
+            fila[3] = datosTicket.getTotal();
+            fila[4] = datosTicket.getFracciones();
+            Vehiculo datosVehiculo = datosTicket.getVehiculoTicket();
+            fila[5] = datosVehiculo.getPlaca();
+            fila[6] = datosVehiculo.getModelo();
+            fila[7] = datosVehiculo.getPlaca();
+            Cliente datosCliente = controladorCliente.verClientePlaca(datosVehiculo.getPlaca());
+            fila[8] = datosCliente.getCedula();
+            fila[9] = datosCliente.getNombre();
+            fila[10] = datosCliente.getDireccion();
+            fila[11] = datosCliente.getTelefono();
+            modelo.addRow(fila);
+        }
+        this.tblTickets.setModel(modelo);
+    }
+
+    private String fechaActual(Date fecha) {
+        String strDateFormat = "dd-MM-yyyy HH: mm: ss";
+        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+        return objSDF.format(fecha);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField ftxCodigo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblPlaca;
+    private javax.swing.JPanel pnIngresarTicket;
     private javax.swing.JTable tblTickets;
-    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

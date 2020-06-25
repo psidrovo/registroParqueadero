@@ -45,6 +45,7 @@ public class ControladorTicket {
         //vehiculo=vehiculoDAO.read(placa);
         ticket=ticketDAO.read(numero);
         ticket.setFechaHoraSalida(fechaDeSalida);
+        ticket.CalcularTotal();
         ticketDAO.update(ticket);
         //ticketDAO.delete(ticket);
     }
@@ -73,6 +74,14 @@ public class ControladorTicket {
         int codigo=ticketDAO.obtenerUltimoCodigo();
         return ++codigo;
     }
+
+    public Ticket calcularPago(int codigo, Date fechaDeSalida) {
+        Ticket ticketAuxiliar=ticketDAO.read(codigo);
+        ticketAuxiliar.setFechaHoraSalida(fechaDeSalida);
+        ticketAuxiliar.CalcularTotal();
+        return ticketAuxiliar;
+    }
+
     
     
     
