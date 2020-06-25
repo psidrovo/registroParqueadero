@@ -185,13 +185,15 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btRegistrarActionPerformed
 
-    public void setEditarCampos(String cedula){
+  
+    public void setEditarCamposRegresarCliente(String cedula){
         txtMarca.setEnabled(true);
         txtModelo.setEnabled(true);
         ftxPlaca.setEnabled(true);
         txtCedula.setEnabled(false);
         txtCedula.setText(cedula);
     }
+    
     public void setVistaIngresoParqueadero(VistaIngresoParqueadero vistaIngresoParqueadero) {
         this.vistaIngresoParqueadero = vistaIngresoParqueadero;
     }
@@ -216,6 +218,13 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     public void setPlaca(Object placa) {
+        txtMarca.setEnabled(false);
+        txtModelo.setEnabled(false);
+        ftxPlaca.setEnabled(false);
+        txtCedula.setEnabled(true);
+        txtCedula.setText("");
+        txtMarca.setText("");
+        txtModelo.setText("");
         ftxPlaca.setValue(placa);
     }
 

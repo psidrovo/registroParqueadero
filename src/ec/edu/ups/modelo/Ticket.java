@@ -81,8 +81,14 @@ public class Ticket {
     }
 
     public void CalcularTotal() {
-        this.setTotal(10);
-        this.setFracciones(20);
+        
+        long millisIngreso = fechaHoraIngreso.getTime();
+        long millisSalida = fechaHoraSalida.getTime();
+        long milisDiferencia = millisSalida-millisIngreso;
+        milisDiferencia = milisDiferencia/60000;
+        milisDiferencia = (milisDiferencia/10)+1;         
+        this.setFracciones(Integer.parseInt(milisDiferencia+""));
+        this.setTotal(this.getFracciones()*0.25);
 
     }
 
