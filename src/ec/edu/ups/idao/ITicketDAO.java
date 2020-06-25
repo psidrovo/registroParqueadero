@@ -17,4 +17,5 @@ public interface ITicketDAO {
     public void delete(Ticket ticket);   
     public List<Ticket> listaDeTicketSegunTipo(String tipo);
     public int obtenerUltimoCodigo();
+    public List<Ticket> findAll();
 }

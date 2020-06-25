@@ -81,9 +81,9 @@ public class ControladorTicket {
         ticketAuxiliar.CalcularTotal();
         return ticketAuxiliar;
     }
-
     
-    
-    
-    
+    public List<Ticket> listaGeneralDeTickets(){
+        return ticketDAO.findAll();
+    }
+   
 }

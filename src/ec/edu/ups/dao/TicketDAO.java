@@ -83,4 +83,10 @@ public class TicketDAO implements ITicketDAO {
     public int obtenerUltimoCodigo() {
         return listaTicket.size();
     }
+
+    @Override
+    public List<Ticket> findAll() {
+        return listaTicket;
+
+    }
 }
