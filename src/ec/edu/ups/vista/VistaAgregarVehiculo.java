@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -163,12 +164,35 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-        controladorCliente.crearVehiculo(ftxPlaca.getValue().toString(), txtMarca.getText(), txtModelo.getText(),txtCedula.getText());
-        this.setVisible(false);
-        vistaIngresoParqueadero.setVisible(true);
+        if (ftxPlaca.getValue() == null) {
+            JOptionPane.showMessageDialog(null, "PLACA NO VALIDA", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (txtCedula.getText().equals("") && txtMarca.getText().equals("") && txtModelo.getText().equals("") && ftxPlaca.getValue().toString().equals("")) {
+                JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            } else {
+                if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
+                    JOptionPane.showMessageDialog(null, "<html>LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> YA EXISTE INGRESE UNA PLACA NO EXISTENTE</html>", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                    
+                } else {
+                    controladorCliente.crearVehiculo(ftxPlaca.getValue().toString(), txtMarca.getText(), txtModelo.getText(), txtCedula.getText());
+                    this.setVisible(false);
+                    Calendar c = Calendar.getInstance();
+                    controladorTicket.ingresoVehiculoTicket(c.getTime(),ftxPlaca.getValue().toString());
+                    JOptionPane.showMessageDialog(null, "TICKET CREADO", "TICKET", JOptionPane.INFORMATION_MESSAGE);
+                    vistaIngresoParqueadero.setVisible(true);
+                }
+            }
+        }
     }//GEN-LAST:event_btRegistrarActionPerformed
 
-    public void setVistaIngresoParqueadero(VistaIngresoParqueadero vistaIngresoParqueadero){
+    public void setEditarCampos(String cedula){
+        txtMarca.setEnabled(true);
+        txtModelo.setEnabled(true);
+        ftxPlaca.setEnabled(true);
+        txtCedula.setEnabled(false);
+        txtCedula.setText(cedula);
+    }
+    public void setVistaIngresoParqueadero(VistaIngresoParqueadero vistaIngresoParqueadero) {
         this.vistaIngresoParqueadero = vistaIngresoParqueadero;
     }
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
@@ -191,7 +215,7 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    public void setPlaca(Object placa){
+    public void setPlaca(Object placa) {
         ftxPlaca.setValue(placa);
     }
 

@@ -8,22 +8,23 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Paul Idrovo
  */
 public class VistaAgregarCliente extends javax.swing.JInternalFrame {
-    
+
     private ControladorCliente controladorCliente;
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
-    
+
     private VistaAgregarVehiculo vistaAgregarVehiculo;
-    
+
     public VistaAgregarCliente(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo) {
         initComponents();
-        
+
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
@@ -158,18 +159,28 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-        controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
-        this.setVisible(false);
-        vistaAgregarVehiculo.setVisible(true);
+
+        if (txtCedula.getText().equals("") && txtDireccion.getText().equals("") && txtNombre.getText().equals("") && txtTelefono.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (controladorCliente.verCliente(txtCedula.getText()) != null) {
+                JOptionPane.showMessageDialog(null, "<html>EL CLIENTE CON CEDULA <strong>" + txtCedula.getText() + "</strong> YA EXISTE</html>", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            } else {
+                controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
+                this.setVisible(false);
+                vistaAgregarVehiculo.setVisible(true);
+                vistaAgregarVehiculo.setEditarCampos(txtCedula.getText());
+            }
+        }
     }//GEN-LAST:event_btRegistrarActionPerformed
     public void setCedulaVista(String cedula) {
         txtCedula.setText(cedula);
     }
-    
-    public void setVistaAgregarVehiculo(VistaAgregarVehiculo vistaAgregarVehiculo){
-        this.vistaAgregarVehiculo=vistaAgregarVehiculo;
+
+    public void setVistaAgregarVehiculo(VistaAgregarVehiculo vistaAgregarVehiculo) {
+        this.vistaAgregarVehiculo = vistaAgregarVehiculo;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrar;
     private javax.swing.JLabel lblApellido;

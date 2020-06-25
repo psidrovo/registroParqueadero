@@ -128,12 +128,12 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         pnIngresarTicket.setLayout(pnIngresarTicketLayout);
         pnIngresarTicketLayout.setHorizontalGroup(
             pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1296, Short.MAX_VALUE)
+            .addGap(0, 1832, Short.MAX_VALUE)
             .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnIngresarTicketLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1812, Short.MAX_VALUE)
                         .addGroup(pnIngresarTicketLayout.createSequentialGroup()
                             .addComponent(lblPlaca)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -143,7 +143,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         );
         pnIngresarTicketLayout.setVerticalGroup(
             pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 657, Short.MAX_VALUE)
             .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnIngresarTicketLayout.createSequentialGroup()
                     .addContainerGap()
@@ -151,7 +151,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
                         .addComponent(lblPlaca)
                         .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -168,7 +168,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(pnIngresarTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -194,6 +194,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
                         this.setVisible(false);
                         vistaAgregarVehiculo.setPlaca(ftxPlaca.getValue());
                         vistaAgregarVehiculo.setVisible(true);
+                        ftxPlaca.setValue("");
                     }
                 }
             } else {
@@ -208,7 +209,6 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         modelo.addColumn("CODIGO");
         modelo.addColumn("FEHCA INGRESO");
-        modelo.addColumn("FECHA SALIDA");
         modelo.addColumn("PLACA");
         modelo.addColumn("MARCA");
         modelo.addColumn("MODELO");
@@ -218,21 +218,20 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         modelo.addColumn("TELEFONO");
        
         this.tblTickets.setModel(modelo);
-         Object[] fila = new Object[10];
+         Object[] fila = new Object[9];
 
         for (Ticket datosTicket : controladorTicket.listaIngresoDeTickets()) {
             fila[0] = datosTicket.getNumero();
             fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
-            fila[2] = "----";
             Vehiculo datosVehiculo = datosTicket.getVehiculoTicket();
-            fila[3] = datosVehiculo.getPlaca();
-            fila[4] = datosVehiculo.getModelo();
-            fila[5] = datosVehiculo.getPlaca();
+            fila[2] = datosVehiculo.getPlaca();
+            fila[3] = datosVehiculo.getModelo();
+            fila[4] = datosVehiculo.getPlaca();
             Cliente datosCliente = controladorCliente.verClientePlaca(datosVehiculo.getPlaca());
-            fila[6] = datosCliente.getCedula();
-            fila[7] = datosCliente.getNombre();
-            fila[8] = datosCliente.getDireccion();
-            fila[9] = datosCliente.getTelefono();
+            fila[5] = datosCliente.getCedula();
+            fila[6] = datosCliente.getNombre();
+            fila[7] = datosCliente.getDireccion();
+            fila[8] = datosCliente.getTelefono();
             modelo.addRow(fila);
         }
         this.tblTickets.setModel(modelo);
