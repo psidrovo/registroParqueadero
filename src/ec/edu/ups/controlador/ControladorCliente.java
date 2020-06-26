@@ -55,15 +55,15 @@ public class ControladorCliente {
     }
     
     public void crearVehiculo(String placa, String marca, String modelo, String cedula){
-        vehiculo=new Vehiculo(placa, marca, modelo);
-        vehiculoDAO.create(vehiculo);
         cliente=clienteDAO.read(cedula);
+        vehiculo=new Vehiculo(placa, marca, modelo,cliente);
+        vehiculoDAO.create(vehiculo);
         cliente.agregarVehiculo(vehiculo);
         clienteDAO.update(cliente);
     }
     
     public void editarVehiculo(String placa, String marca, String modelo){
-        vehiculo=new Vehiculo(placa, marca, modelo);
+        vehiculo=new Vehiculo(placa, marca, modelo, cliente);
         vehiculoDAO.update(vehiculo);
         cliente.editarVehiculo(vehiculo);
         clienteDAO.update(cliente);

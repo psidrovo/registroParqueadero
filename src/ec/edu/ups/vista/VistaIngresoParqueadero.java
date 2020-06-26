@@ -31,13 +31,15 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
     private ControladorVehiculo controladorVehiculo;
 
     private VistaAgregarVehiculo vistaAgregarVehiculo;
+    private VistaEditarDatosVehiculo vistaEditarDatosVehiculo;
 
-    public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo) {
+    public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo, VistaEditarDatosVehiculo vistaEditarDatosVehiculo) {
         initComponents();
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
         this.vistaAgregarVehiculo = vistaAgregarVehiculo;
+        this.vistaEditarDatosVehiculo = vistaEditarDatosVehiculo;
     }
 
     /**
@@ -183,13 +185,38 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         if (validar == '\n') {
             if (ftxPlaca.getValue() != null) {
                 if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
-                    Calendar c = Calendar.getInstance();
-                    controladorTicket.ingresoVehiculoTicket(c.getTime(),ftxPlaca.getValue().toString());
-                    listarTickets();
+                    
+                    this.vistaEditarDatosVehiculo.setPlaca(ftxPlaca.getValue().toString());
+                    this.vistaEditarDatosVehiculo.setVisible(true);
+                    
+                    Object[] opcionesJPanel = {"SI", "EDITAR", "CANCELAR"};
+                    int confirmar = JOptionPane.showOptionDialog(null,
+                            "<html>CONFIRME SI LOS DATOS DE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> SON CORRECTOS PARA CREAR EL TICKET</html>",
+                            "CONFIRMACION",
+                            JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
+                    
+                    if (JOptionPane.OK_OPTION == confirmar) {
+                        this.vistaEditarDatosVehiculo.setVisible(false);
+                        Calendar c = Calendar.getInstance();
+                        controladorTicket.ingresoVehiculoTicket(c.getTime(), ftxPlaca.getValue().toString());
+                        JOptionPane.showMessageDialog(null, "TICKET CREADO", "TICKET", JOptionPane.INFORMATION_MESSAGE);
+                        listarTickets();
+                    } else if (confirmar == 1) {
+                        this.setVisible(false);
+                    }else{
+                        this.vistaEditarDatosVehiculo.setVisible(false);
+                    }
                 } else {
-                    int confirmar = JOptionPane.showConfirmDialog(null,
+                    Object[] opcionesJPanel = {"SI", "CANCELAR"};
+                    int confirmar = JOptionPane.showOptionDialog(null,
+                            "<html>NO EXISTE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> DESEA REGISTRAR LA NUEVA PLACA?</html>",
+                            "CONFIRMACION",
+                            JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
+                    /*JOptionPane.showConfirmDialog(null,
                             "<html>NO EXISTE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> DESEA REGISTRAR LA NUEVA PLACA?</html>");
-
+                     */
                     if (JOptionPane.OK_OPTION == confirmar) {
                         this.setVisible(false);
                         vistaAgregarVehiculo.setPlaca(ftxPlaca.getValue());
@@ -203,8 +230,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ftxPlacaKeyTyped
 
-    
-    private void listarTickets(){
+    private void listarTickets() {
         DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
         modelo.setColumnCount(0);
         modelo.setRowCount(0);
@@ -217,9 +243,9 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         modelo.addColumn("NOMBRE");
         modelo.addColumn("DIRECCION");
         modelo.addColumn("TELEFONO");
-       
+
         this.tblTickets.setModel(modelo);
-         Object[] fila = new Object[9];
+        Object[] fila = new Object[9];
 
         for (Ticket datosTicket : controladorTicket.listaIngresoDeTickets()) {
             fila[0] = datosTicket.getNumero();
@@ -228,15 +254,15 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
             fila[2] = datosVehiculo.getPlaca();
             fila[3] = datosVehiculo.getModelo();
             fila[4] = datosVehiculo.getPlaca();
-            Cliente datosCliente = controladorCliente.verClientePlaca(datosVehiculo.getPlaca());
-            fila[5] = datosCliente.getCedula();
-            fila[6] = datosCliente.getNombre();
-            fila[7] = datosCliente.getDireccion();
-            fila[8] = datosCliente.getTelefono();
+            fila[5] = datosVehiculo.getCliente().getCedula();
+            fila[6] = datosVehiculo.getCliente().getNombre();
+            fila[7] = datosVehiculo.getCliente().getDireccion();
+            fila[8] = datosVehiculo.getCliente().getTelefono();
             modelo.addRow(fila);
         }
         this.tblTickets.setModel(modelo);
     }
+
     private String fechaActual(Date fecha) {
         String strDateFormat = "dd-MM-yyyy HH: mm: ss";
         SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);

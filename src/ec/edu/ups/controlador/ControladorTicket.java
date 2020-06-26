@@ -76,10 +76,10 @@ public class ControladorTicket {
     }
 
     public Ticket calcularPago(int codigo, Date fechaDeSalida) {
-        Ticket ticketAuxiliar=ticketDAO.read(codigo);
-        ticketAuxiliar.setFechaHoraSalida(fechaDeSalida);
-        ticketAuxiliar.CalcularTotal();
-        return ticketAuxiliar;
+        ticket=ticketDAO.read(codigo);
+        ticket.setFechaHoraSalida(fechaDeSalida);
+        ticket.CalcularTotal();
+        return ticket;
     }
     
     public List<Ticket> listaGeneralDeTickets(){

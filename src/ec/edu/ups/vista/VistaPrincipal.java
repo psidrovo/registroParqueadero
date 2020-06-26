@@ -14,6 +14,10 @@ import ec.edu.ups.dao.VehiculoDAO;
 import ec.edu.ups.idao.IClienteDAO;
 import ec.edu.ups.idao.ITicketDAO;
 import ec.edu.ups.idao.IVehiculoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -27,6 +31,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private VistaIngresoParqueadero vistaIngresoParqueadero;
     private VistaSalidaParqueadero vistaSalidaParqueadero;
     private VistaListarTickets vistaListarTickets;
+    private VistaEditarDatosVehiculo vistaEditarDatosVehiculo;
     //Dao
     private IClienteDAO clienteDao;
     private ITicketDAO ticketDao;
@@ -55,7 +60,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo);
         this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarCliente, vistaIngresoParqueadero);
         this.vistaAgregarCliente.setVistaAgregarVehiculo(vistaAgregarVehiculo);
-        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo);
+        this.vistaEditarDatosVehiculo=new VistaEditarDatosVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaIngresoParqueadero);
+        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo,vistaEditarDatosVehiculo);
+        this.vistaEditarDatosVehiculo.setVistaIngreso(vistaIngresoParqueadero);
         this.vistaAgregarVehiculo.setVistaIngresoParqueadero(vistaIngresoParqueadero);
         this.vistaSalidaParqueadero = new VistaSalidaParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
         this.vistaListarTickets= new VistaListarTickets(controladorCliente, controladorTicket, controladorVehiculo);
@@ -66,6 +73,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.desktopPane.add(vistaIngresoParqueadero);
         this.desktopPane.add(vistaSalidaParqueadero);
         this.desktopPane.add(vistaListarTickets);
+        this.desktopPane.add(vistaEditarDatosVehiculo);
     }
 
     private void Ocultar() {
@@ -246,7 +254,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                    System.out.println("Error setting Java LAF: " + e);
+                }
                 new VistaPrincipal().setVisible(true);
+                
             }
         });
     }

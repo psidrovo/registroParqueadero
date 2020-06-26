@@ -31,17 +31,17 @@ public class ControladorVehiculo {
         this.ticketDAO = ticketDAO;
         this.vehiculoDAO = vehiculoDAO;
     }
-    
+    /*
     public void crearVehiculo(String placa, String marca, String modelo){
         vehiculo=new Vehiculo(placa, marca, modelo);
         vehiculoDAO.create(vehiculo);
     }
-    
-    public void editarVehiculo(String placa, String marca, String modelo){
-        vehiculo=new Vehiculo(placa, marca, modelo);
+    */
+    public void editarVehiculoCliente(Cliente cliente){
+        vehiculo.setCliente(cliente);
         vehiculoDAO.update(vehiculo);
     }
-    
+ 
     public void eliminarVehiculo(String placa){
         vehiculo=vehiculoDAO.read(placa);
         vehiculoDAO.delete(vehiculo);

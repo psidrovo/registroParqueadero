@@ -166,12 +166,17 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
                     Calendar c = Calendar.getInstance();
                     Ticket mensaje = controladorTicket.calcularPago(codigo, c.getTime());
                     int confirmar = JOptionPane.showConfirmDialog(null,
-                            "<html>EL VALOR A PAGAR ES <strong>" + mensaje.getTotal() + "</strong> DE <strong>" + mensaje.getFracciones() + "</strong> FRACCIONES. DESEA CONTINUAR?</html>");
+                            "<html>EL VALOR A PAGAR ES <strong>" + mensaje.getTotal() + "</strong> DE <strong>" + mensaje.getMinutos()+ "</strong> MINUTOS TOTAL <strong> "+ mensaje.getFracciones()+ "</strong> FRACCIONES</html> \n DESEA CONTINUAR?");
 
                     if (JOptionPane.OK_OPTION == confirmar) {
                         controladorTicket.salidaVehiculoTicket(codigo, c.getTime());
                         listarTickets();
                         ftxCodigo.setValue(0);
+                    }else{
+                        mensaje.setFechaHoraSalida(null);
+                        mensaje.setMinutos(0);
+                        mensaje.setTotal(0);
+                        mensaje.setFracciones(0);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "TICKET NO EXISTENTE", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
@@ -188,7 +193,8 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
         modelo.addColumn("CODIGO");
         modelo.addColumn("FEHCA INGRESO");
         modelo.addColumn("FEHCA SALIDA");
-        modelo.addColumn("TOTAL");
+        modelo.addColumn("TOTAL $");
+        modelo.addColumn("MINUTOS");
         modelo.addColumn("FRACCIONES");
         modelo.addColumn("PLACA");
         modelo.addColumn("MARCA");
@@ -199,23 +205,23 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
         modelo.addColumn("TELEFONO");
 
         this.tblTickets.setModel(modelo);
-        Object[] fila = new Object[12];
+        Object[] fila = new Object[13];
 
         for (Ticket datosTicket : controladorTicket.listaSalidaDeTickets()) {
             fila[0] = datosTicket.getNumero();
             fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
             fila[2] = fechaActual(datosTicket.getFechaHoraSalida());
             fila[3] = "$ " + datosTicket.getTotal();
-            fila[4] = datosTicket.getFracciones();
+            fila[4] = datosTicket.getMinutos();
+            fila[5] = datosTicket.getFracciones();
             Vehiculo datosVehiculo = datosTicket.getVehiculoTicket();
-            fila[5] = datosVehiculo.getPlaca();
-            fila[6] = datosVehiculo.getModelo();
-            fila[7] = datosVehiculo.getPlaca();
-            Cliente datosCliente = controladorCliente.verClientePlaca(datosVehiculo.getPlaca());
-            fila[8] = datosCliente.getCedula();
-            fila[9] = datosCliente.getNombre();
-            fila[10] = datosCliente.getDireccion();
-            fila[11] = datosCliente.getTelefono();
+            fila[6] = datosVehiculo.getPlaca();
+            fila[7] = datosVehiculo.getModelo();
+            fila[8] = datosVehiculo.getPlaca();
+            fila[9] = datosVehiculo.getCliente().getCedula();
+            fila[10] = datosVehiculo.getCliente().getNombre();
+            fila[11] = datosVehiculo.getCliente().getDireccion();
+            fila[12] = datosVehiculo.getCliente().getTelefono();
             modelo.addRow(fila);
         }
         this.tblTickets.setModel(modelo);
