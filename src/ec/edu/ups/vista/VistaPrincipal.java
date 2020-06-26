@@ -91,9 +91,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         saveMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
+        menuIdioma = new javax.swing.JMenu();
+        menuItemEspañol = new javax.swing.JMenuItem();
+        menuItemIngles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,21 +147,31 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("EDITAR");
-        editMenu.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        menuIdioma.setMnemonic('e');
+        menuIdioma.setText("IDIOMA");
+        menuIdioma.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
-        cutMenuItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
+        menuItemEspañol.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        menuItemEspañol.setMnemonic('t');
+        menuItemEspañol.setText("Español");
+        menuItemEspañol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEspañolActionPerformed(evt);
+            }
+        });
+        menuIdioma.add(menuItemEspañol);
 
-        copyMenuItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
+        menuItemIngles.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        menuItemIngles.setMnemonic('y');
+        menuItemIngles.setText("Ingles");
+        menuItemIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemInglesActionPerformed(evt);
+            }
+        });
+        menuIdioma.add(menuItemIngles);
 
-        menuBar.add(editMenu);
+        menuBar.add(menuIdioma);
 
         setJMenuBar(menuBar);
 
@@ -197,6 +207,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         Ocultar();
         this.vistaListarTickets.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuItemInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInglesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemInglesActionPerformed
+
+    private void menuItemEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEspañolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemEspañolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,14 +252,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuIdioma;
+    private javax.swing.JMenuItem menuItemEspañol;
+    private javax.swing.JMenuItem menuItemIngles;
     private javax.swing.JMenuItem mnIngresar;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
