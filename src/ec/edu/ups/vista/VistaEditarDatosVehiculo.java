@@ -114,6 +114,7 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
         txtTelefono.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
         btGuardar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/salvar.png"))); // NOI18N
         btGuardar.setText("GUARDAR");
         btGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,11 +210,10 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
                             .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(btGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(btCancelar)
-                .addGap(0, 0, 0))
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

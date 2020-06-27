@@ -88,11 +88,10 @@
               </Group>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-              <Component id="btGuardar" min="-2" pref="122" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+              <Component id="btGuardar" min="-2" pref="138" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="btCancelar" min="-2" pref="131" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -218,6 +217,9 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="0"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ec/edu/ups/multimedia/salvar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="GUARDAR"/>
       </Properties>

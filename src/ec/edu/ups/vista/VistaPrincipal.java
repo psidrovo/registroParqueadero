@@ -14,6 +14,8 @@ import ec.edu.ups.dao.VehiculoDAO;
 import ec.edu.ups.idao.IClienteDAO;
 import ec.edu.ups.idao.ITicketDAO;
 import ec.edu.ups.idao.IVehiculoDAO;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -40,12 +42,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private ControladorCliente controladorCliente;
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
-    
 
     public VistaPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize);
+        lblFondo.setSize(screenSize);
+        
         //Inicializar Dao
         this.clienteDao = new ClienteDAO();
         this.ticketDao = new TicketDAO();
@@ -60,13 +64,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo);
         this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarCliente, vistaIngresoParqueadero);
         this.vistaAgregarCliente.setVistaAgregarVehiculo(vistaAgregarVehiculo);
-        this.vistaEditarDatosVehiculo=new VistaEditarDatosVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaIngresoParqueadero);
-        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo,vistaEditarDatosVehiculo);
+        this.vistaEditarDatosVehiculo = new VistaEditarDatosVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaIngresoParqueadero);
+        this.vistaIngresoParqueadero = new VistaIngresoParqueadero(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo, vistaEditarDatosVehiculo);
         this.vistaEditarDatosVehiculo.setVistaIngreso(vistaIngresoParqueadero);
         this.vistaAgregarVehiculo.setVistaIngresoParqueadero(vistaIngresoParqueadero);
         this.vistaSalidaParqueadero = new VistaSalidaParqueadero(controladorCliente, controladorTicket, controladorVehiculo);
-        this.vistaListarTickets= new VistaListarTickets(controladorCliente, controladorTicket, controladorVehiculo);
-        
+        this.vistaListarTickets = new VistaListarTickets(controladorCliente, controladorTicket, controladorVehiculo);
+
         //Agregar desktopPane
         this.desktopPane.add(vistaAgregarCliente);
         this.desktopPane.add(vistaAgregarVehiculo);
@@ -81,6 +85,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.vistaAgregarVehiculo.setVisible(false);
         this.vistaIngresoParqueadero.setVisible(false);
         this.vistaSalidaParqueadero.setVisible(false);
+        this.vistaListarTickets.setVisible(false);
+        this.vistaEditarDatosVehiculo.setVisible(false);
     }
 
     /**
@@ -93,6 +99,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        lblFondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         mnIngresar = new javax.swing.JMenuItem();
@@ -105,7 +112,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        desktopPane.setLayout(null);
+        desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/hora.png"))); // NOI18N
+        desktopPane.add(lblFondo);
+        lblFondo.setBounds(630, 10, 30, 30);
 
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/parque.png"))); // NOI18N
         fileMenu.setMnemonic('f');
@@ -134,6 +145,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         fileMenu.add(saveMenuItem);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/directorio.png"))); // NOI18N
         jMenuItem1.setText("Listar tickets");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,11 +167,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
+        menuIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/traduccion.png"))); // NOI18N
         menuIdioma.setMnemonic('e');
         menuIdioma.setText("IDIOMA");
         menuIdioma.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
         menuItemEspañol.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        menuItemEspañol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/espana.png"))); // NOI18N
         menuItemEspañol.setMnemonic('t');
         menuItemEspañol.setText("Español");
         menuItemEspañol.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +184,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         menuIdioma.add(menuItemEspañol);
 
         menuItemIngles.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        menuItemIngles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/bandera.png"))); // NOI18N
         menuItemIngles.setMnemonic('y');
         menuItemIngles.setText("Ingles");
         menuItemIngles.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +206,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -260,7 +275,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     System.out.println("Error setting Java LAF: " + e);
                 }
                 new VistaPrincipal().setVisible(true);
-                
+
             }
         });
     }
@@ -270,6 +285,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuIdioma;
     private javax.swing.JMenuItem menuItemEspañol;

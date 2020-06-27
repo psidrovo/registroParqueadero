@@ -31,30 +31,10 @@ public class ControladorVehiculo {
         this.ticketDAO = ticketDAO;
         this.vehiculoDAO = vehiculoDAO;
     }
-    /*
-    public void crearVehiculo(String placa, String marca, String modelo){
-        vehiculo=new Vehiculo(placa, marca, modelo);
-        vehiculoDAO.create(vehiculo);
-    }
-    */
-    public void editarVehiculoCliente(Cliente cliente){
-        vehiculo.setCliente(cliente);
-        vehiculoDAO.update(vehiculo);
-    }
- 
-    public void eliminarVehiculo(String placa){
-        vehiculo=vehiculoDAO.read(placa);
-        vehiculoDAO.delete(vehiculo);
-        vehiculoDAO.update(vehiculo);
-    }
+    
     public Vehiculo buscarVehiculo(String placa){
         vehiculo=vehiculoDAO.read(placa);
         return vehiculo;
-    }
-    public List<Vehiculo> listarvehiculos(){
-        List<Vehiculo> vehiculos;
-        vehiculos=vehiculoDAO.findAll();
-        return vehiculos;
     }
     
 }
