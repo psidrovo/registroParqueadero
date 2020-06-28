@@ -23,23 +23,33 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
 
     private VistaAgregarVehiculo vistaAgregarVehiculo;
 
+    //joptionPanel
+    private String tituloErrorDatos;
+    private String mensajeErrorDatos;
+    private String opcion1parte1;
+    private String opcion1parte2;
+
     public VistaAgregarCliente(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo) {
         initComponents();
-
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
         this.vistaAgregarVehiculo = vistaAgregarVehiculo;
     }
-public void setCambiarIdioma(ResourceBundle mensajes){
-        pnAgregarCliente.setName(mensajes.getString("panelCliente"));
-        lblCedula.setText(mensajes.getString("cedulaAgregarCliente"));
-        lblNombre.setText(mensajes.getString("nombreAgregarCliente"));
-        lblDireccion.setText(mensajes.getString("direccionAgregarCliente"));
-        lblTelefono.setText(mensajes.getString("telefonoAgregarCliente"));
-        btRegistrar.setText(mensajes.getString("botonRegistrarCliente"));
-        //falta option panel
-    } 
+
+    public void setCambiarIdioma(ResourceBundle mensajes) {
+        this.pnAgregarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, mensajes.getString("panelIngresarTicket"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18)));
+        this.lblCedula.setText(mensajes.getString("cedula"));
+        this.lblNombre.setText(mensajes.getString("nombre"));
+        this.lblDireccion.setText(mensajes.getString("direccion"));
+        this.lblTelefono.setText(mensajes.getString("telefono"));
+        this.btRegistrar.setText(mensajes.getString("resgistrar"));
+        this.tituloErrorDatos = mensajes.getString("tituloErrorDatos");
+        this.mensajeErrorDatos = mensajes.getString("mensajeErrorDatos");
+        this.opcion1parte1 = mensajes.getString("mensajeCedulaExiste1");
+        this.opcion1parte2 = mensajes.getString("mensajeCedulaExiste2");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -170,10 +180,10 @@ public void setCambiarIdioma(ResourceBundle mensajes){
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
 
         if (txtCedula.getText().equals("") || txtDireccion.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, mensajeErrorDatos, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
         } else {
             if (controladorCliente.verCliente(txtCedula.getText()) != null) {
-                JOptionPane.showMessageDialog(null, "<html>EL CLIENTE CON CEDULA <strong>" + txtCedula.getText() + "</strong> YA EXISTE</html>", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "<html>" + opcion1parte1 + " <strong>" + txtCedula.getText() + "</strong> " + opcion1parte2 + "</html>", tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
             } else {
                 controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
                 this.setVisible(false);

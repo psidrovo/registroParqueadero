@@ -65,6 +65,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.controladorTicket = new ControladorTicket(clienteDao, ticketDao, vehiculoDao);
         this.controladorVehiculo = new ControladorVehiculo(clienteDao, ticketDao, vehiculoDao);
 
+        
         //Vistas
         this.vistaAgregarCliente = new VistaAgregarCliente(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarVehiculo);
         this.vistaAgregarVehiculo = new VistaAgregarVehiculo(controladorCliente, controladorTicket, controladorVehiculo, vistaAgregarCliente, vistaIngresoParqueadero);
@@ -82,10 +83,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.desktopPane.add(vistaIngresoParqueadero);
         this.desktopPane.add(vistaSalidaParqueadero);
         this.desktopPane.add(vistaListarTickets);
-        this.desktopPane.add(vistaEditarDatosVehiculo);
+        this.desktopPane.add(vistaEditarDatosVehiculo);     
         
+        //Idioma
         this.localizacion= new Locale("es", "EC");
         this.mensajes=ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        cambiarIdiomaTodasLasVentanas();
     }
 
     private void Ocultar() {
@@ -97,11 +100,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.vistaEditarDatosVehiculo.setVisible(false);
     }
 public void setCambiarIdioma(){
-        mnSalir.setText(mensajes.getString("menuPrincipal"));
-        mnIngresar.setText(mensajes.getString("menuIngresarVehiculo"));
-        mnSalir.setText(mensajes.getString("menuSalirVehiculo"));
-        mnListar.setText(mensajes.getString("menuListarTickets"));
-        mnListar.setText(mensajes.getString("menuSalir"));
+        mnInicio.setText(mensajes.getString("menuPrincipal"));
+        mnIngresarVehiculo.setText(mensajes.getString("menuIngresarVehiculo"));
+        mnSalirVehiculo.setText(mensajes.getString("menuSalirVehiculo"));
+        mnListarTickets.setText(mensajes.getString("menuListarTickets"));
+        mnSalir.setText(mensajes.getString("menuSalir"));
         menuIdioma.setText(mensajes.getString("menuIdioma"));
         menuItemEspañol.setText(mensajes.getString("menuItemEspañol"));
         menuItemIngles.setText(mensajes.getString("menuItemIngles"));  
@@ -118,11 +121,11 @@ public void setCambiarIdioma(){
         desktopPane = new javax.swing.JDesktopPane();
         lblFondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        mnSalir = new javax.swing.JMenu();
-        mnIngresar = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        mnListar = new javax.swing.JMenuItem();
+        mnInicio = new javax.swing.JMenu();
+        mnIngresarVehiculo = new javax.swing.JMenuItem();
+        mnSalirVehiculo = new javax.swing.JMenuItem();
+        mnListarTickets = new javax.swing.JMenuItem();
+        mnSalir = new javax.swing.JMenuItem();
         menuIdioma = new javax.swing.JMenu();
         menuItemEspañol = new javax.swing.JMenuItem();
         menuItemIngles = new javax.swing.JMenuItem();
@@ -130,60 +133,59 @@ public void setCambiarIdioma(){
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
-        desktopPane.setLayout(null);
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/hora.png"))); // NOI18N
         desktopPane.add(lblFondo);
         lblFondo.setBounds(630, 10, 30, 30);
 
-        mnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/parque.png"))); // NOI18N
-        mnSalir.setMnemonic('f');
-        mnSalir.setText("INICIO");
-        mnSalir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        mnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/parque.png"))); // NOI18N
+        mnInicio.setMnemonic('f');
+        mnInicio.setText("INICIO");
+        mnInicio.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
-        mnIngresar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        mnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/moving-truck.png"))); // NOI18N
-        mnIngresar.setMnemonic('o');
-        mnIngresar.setText("Ingresar vehiculo");
-        mnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        mnIngresarVehiculo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        mnIngresarVehiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/moving-truck.png"))); // NOI18N
+        mnIngresarVehiculo.setMnemonic('o');
+        mnIngresarVehiculo.setText("Ingresar vehiculo");
+        mnIngresarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnIngresarActionPerformed(evt);
+                mnIngresarVehiculoActionPerformed(evt);
             }
         });
-        mnSalir.add(mnIngresar);
+        mnInicio.add(mnIngresarVehiculo);
 
-        saveMenuItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        saveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/enviado.png"))); // NOI18N
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Salir vehiculo");
-        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        mnSalirVehiculo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        mnSalirVehiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/enviado.png"))); // NOI18N
+        mnSalirVehiculo.setMnemonic('s');
+        mnSalirVehiculo.setText("Salir vehiculo");
+        mnSalirVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveMenuItemActionPerformed(evt);
+                mnSalirVehiculoActionPerformed(evt);
             }
         });
-        mnSalir.add(saveMenuItem);
+        mnInicio.add(mnSalirVehiculo);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/directorio.png"))); // NOI18N
-        jMenuItem1.setText("Listar tickets");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnListarTickets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/directorio.png"))); // NOI18N
+        mnListarTickets.setText("Listar tickets");
+        mnListarTickets.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnListarTicketsActionPerformed(evt);
             }
         });
-        mnSalir.add(jMenuItem1);
+        mnInicio.add(mnListarTickets);
 
-        mnListar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        mnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/cerrar.png"))); // NOI18N
-        mnListar.setMnemonic('x');
-        mnListar.setText("Salir");
-        mnListar.addActionListener(new java.awt.event.ActionListener() {
+        mnSalir.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        mnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/cerrar.png"))); // NOI18N
+        mnSalir.setMnemonic('x');
+        mnSalir.setText("Salir");
+        mnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnListarActionPerformed(evt);
+                mnSalirActionPerformed(evt);
             }
         });
-        mnSalir.add(mnListar);
+        mnInicio.add(mnSalir);
 
-        menuBar.add(mnSalir);
+        menuBar.add(mnInicio);
 
         menuIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/traduccion.png"))); // NOI18N
         menuIdioma.setMnemonic('e');
@@ -224,43 +226,52 @@ public void setCambiarIdioma(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListarActionPerformed
+    private void mnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSalirActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_mnListarActionPerformed
+    }//GEN-LAST:event_mnSalirActionPerformed
 
-    private void mnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIngresarActionPerformed
+    private void mnIngresarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIngresarVehiculoActionPerformed
         Ocultar();
         this.vistaIngresoParqueadero.setVisible(true);
-    }//GEN-LAST:event_mnIngresarActionPerformed
+    }//GEN-LAST:event_mnIngresarVehiculoActionPerformed
 
-    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+    private void mnSalirVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSalirVehiculoActionPerformed
         Ocultar();
         this.vistaSalidaParqueadero.setVisible(true);
-    }//GEN-LAST:event_saveMenuItemActionPerformed
+    }//GEN-LAST:event_mnSalirVehiculoActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnListarTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListarTicketsActionPerformed
         Ocultar();
         this.vistaListarTickets.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnListarTicketsActionPerformed
 
     private void menuItemInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInglesActionPerformed
         localizacion=new Locale("en", "EU");
         mensajes=ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
-        setCambiarIdioma();
+        cambiarIdiomaTodasLasVentanas();
     }//GEN-LAST:event_menuItemInglesActionPerformed
 
     private void menuItemEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEspañolActionPerformed
         localizacion=new Locale("es", "EC");
         mensajes=ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
-        setCambiarIdioma();
+        cambiarIdiomaTodasLasVentanas();
     }//GEN-LAST:event_menuItemEspañolActionPerformed
 
+    public void cambiarIdiomaTodasLasVentanas(){
+        this.setCambiarIdioma();
+        vistaAgregarCliente.setCambiarIdioma(mensajes);
+        vistaAgregarVehiculo.setCambiarIdioma(mensajes);
+        vistaEditarDatosVehiculo.setCambiarIdioma(mensajes);
+        vistaIngresoParqueadero.setCambiarIdioma(mensajes);
+        vistaListarTickets.setCambiarIdioma(mensajes);
+        vistaSalidaParqueadero.SetCambiarIdioma(mensajes);
+    }
     /**
      * @param args the command line arguments
      */
@@ -304,16 +315,16 @@ public void setCambiarIdioma(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuIdioma;
     private javax.swing.JMenuItem menuItemEspañol;
     private javax.swing.JMenuItem menuItemIngles;
-    private javax.swing.JMenuItem mnIngresar;
-    private javax.swing.JMenuItem mnListar;
-    private javax.swing.JMenu mnSalir;
-    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenuItem mnIngresarVehiculo;
+    private javax.swing.JMenu mnInicio;
+    private javax.swing.JMenuItem mnListarTickets;
+    private javax.swing.JMenuItem mnSalir;
+    private javax.swing.JMenuItem mnSalirVehiculo;
     // End of variables declaration//GEN-END:variables
 
 }

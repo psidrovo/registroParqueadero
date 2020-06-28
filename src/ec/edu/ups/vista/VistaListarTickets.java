@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import ec.edu.ups.controlador.*;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -23,59 +24,88 @@ public class VistaListarTickets extends javax.swing.JInternalFrame {
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
 
-    /**
-     * Creates new form VistaListarTickets
-     */
+    //Tabla
+    private String codigo;
+    private String fechaIngreso;
+    private String fechaSalida;
+    private String total;
+    private String minutos;
+    private String fracciones;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private String cedula;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    
     public VistaListarTickets(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
-
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
     }
 
+    public void setCambiarIdioma(ResourceBundle mensajes) {
+        this.codigo = mensajes.getString("codigo");
+        this.fechaIngreso = mensajes.getString("fechaIngreso");
+        this.fechaSalida = mensajes.getString("fechaSalida");
+        this.total = mensajes.getString("total");
+        this.minutos = mensajes.getString("minutos");
+        this.fracciones = mensajes.getString("fracciones");
+        this.placa = mensajes.getString("placa");
+        this.marca = mensajes.getString("marca");
+        this.modelo = mensajes.getString("modelo");
+        this.cedula = mensajes.getString("cedula");
+        this.nombre = mensajes.getString("nombre");
+        this.direccion = mensajes.getString("direccion");
+        this.telefono = mensajes.getString("telefono");
+        listarTickets();
+    }
+    
     private void listarTickets() {
-        DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
-        modelo.setColumnCount(0);
-        modelo.setRowCount(0);
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("FEHCA INGRESO");
-        modelo.addColumn("FEHCA SALIDA");
-        modelo.addColumn("TOTAL");
-        modelo.addColumn("FRACCIONES");
-        modelo.addColumn("PLACA");
-        modelo.addColumn("MARCA");
-        modelo.addColumn("MODELO");
-        modelo.addColumn("CEDULA");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("DIRECCION");
-        modelo.addColumn("TELEFONO");
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblTickets.getModel();
+        modeloTabla.setColumnCount(0);
+        modeloTabla.setRowCount(0);
+        modeloTabla.addColumn(codigo);
+        modeloTabla.addColumn(fechaIngreso);
+        modeloTabla.addColumn(fechaSalida);
+        modeloTabla.addColumn(total);
+        modeloTabla.addColumn(minutos);
+        modeloTabla.addColumn(fracciones);
+        modeloTabla.addColumn(placa);
+        modeloTabla.addColumn(marca);
+        modeloTabla.addColumn(modelo);
+        modeloTabla.addColumn(cedula);
+        modeloTabla.addColumn(nombre);
+        modeloTabla.addColumn(direccion);
+        modeloTabla.addColumn(telefono);
 
-        this.tblTickets.setModel(modelo);
-        Object[] fila = new Object[12];
+        this.tblTickets.setModel(modeloTabla);
+        Object[] fila = new Object[13];
 
         for (Ticket datosTicket : controladorTicket.listaGeneralDeTickets()) {
             fila[0] = datosTicket.getNumero();
             fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
-            if(datosTicket.getFechaHoraSalida()!=null){
-            fila[2] = fechaActual(datosTicket.getFechaHoraSalida());
-            }else{
-                fila[2]="";
+            if (datosTicket.getFechaHoraSalida() != null) {
+                fila[2] = fechaActual(datosTicket.getFechaHoraSalida());
+            } else {
+                fila[2] = "";
             }
             fila[3] = "$ " + datosTicket.getTotal();
-            fila[4] = datosTicket.getFracciones();
+            fila[4] = datosTicket.getMinutos();
+            fila[5] = datosTicket.getFracciones();
             Vehiculo datosVehiculo = datosTicket.getVehiculoTicket();
-            fila[5] = datosVehiculo.getPlaca();
-            fila[6] = datosVehiculo.getModelo();
-            fila[7] = datosVehiculo.getPlaca();
-            Cliente datosCliente = controladorCliente.verClientePlaca(datosVehiculo.getPlaca());
-            fila[8] = datosCliente.getCedula();
-            fila[9] = datosCliente.getNombre();
-            fila[10] = datosCliente.getDireccion();
-            fila[11] = datosCliente.getTelefono();
-            modelo.addRow(fila);
+            fila[6] = datosVehiculo.getPlaca();
+            fila[7] = datosVehiculo.getModelo();
+            fila[8] = datosVehiculo.getPlaca();
+            fila[9] = datosVehiculo.getCliente().getCedula();
+            fila[10] = datosVehiculo.getCliente().getNombre();
+            fila[11] = datosVehiculo.getCliente().getDireccion();
+            fila[12] = datosVehiculo.getCliente().getTelefono();
+            modeloTabla.addRow(fila);
         }
-        this.tblTickets.setModel(modelo);
+        this.tblTickets.setModel(modeloTabla);
     }
 
     private String fechaActual(Date fecha) {

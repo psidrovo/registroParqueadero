@@ -33,7 +33,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
 
     private VistaAgregarVehiculo vistaAgregarVehiculo;
     private VistaEditarDatosVehiculo vistaEditarDatosVehiculo;
-    
+
     //optionPanel
     private String opcionSi;
     private String opcionCancelar;
@@ -44,6 +44,19 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
     private String opcion2parte2;
     private String opcionTituloConfirmar;
     private String mensajeTicket;
+    private String mensajeErrorPlaca;
+    private String tituloErrorDatos;
+
+    //Tabla
+    private String codigo;
+    private String fechaIngreso;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private String cedula;
+    private String nombre;
+    private String direccion;
+    private String telefono;
 
     public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo, VistaEditarDatosVehiculo vistaEditarDatosVehiculo) {
         initComponents();
@@ -52,25 +65,35 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         this.controladorVehiculo = controladorVehiculo;
         this.vistaAgregarVehiculo = vistaAgregarVehiculo;
         this.vistaEditarDatosVehiculo = vistaEditarDatosVehiculo;
-        this.opcionSi = "SI";
-        this.opcionCancelar = "CANCELAR";
-        this.opcionEditar = "EDITAR";
-        this.opcion1parte1="CONFIRME SI LOS DATOS DE LA PLACA";
-        this.opcion1parte2="SON CORRECTOS PARA CREAR EL TICKET";
-        this.opcion2parte1="NO EXISTE LA PLACA";
-        this.opcion2parte2="DESEA REGISTRAR LA NUEVA PLACA?";
-        this.opcionTituloConfirmar="CONFIRMACION";
-        this.mensajeTicket="CREADO";
     }
-public void setCambiarIdioma(ResourceBundle mensajes) {
-        pnIngresarTicket.setName(mensajes.getString("panelIngresarTicket"));
-        lblPlaca.setText(mensajes.getString("placa"));
-        opcionSi = mensajes.getString("si");
-        opcionCancelar = mensajes.getString("cancelar");
-        opcionEditar = mensajes.getString("editar");
 
-        //falta tabla y option panel
+    public void setCambiarIdioma(ResourceBundle mensajes) {
+        this.pnIngresarTicket.setBorder(javax.swing.BorderFactory.createTitledBorder(null, mensajes.getString("panelIngresarTicket"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); 
+        this.lblPlaca.setText(mensajes.getString("placa"));
+        this.opcionSi = mensajes.getString("si");
+        this.opcionCancelar = mensajes.getString("cancelar");
+        this.opcionEditar = mensajes.getString("editar");
+        this.opcion1parte1 = mensajes.getString("confirmarPlaca1");
+        this.opcion1parte2 = mensajes.getString("confirmarPlaca2");
+        this.opcion2parte1 = mensajes.getString("noExistePlaca1");
+        this.opcion2parte2 = mensajes.getString("noExistePlaca1");
+        this.opcionTituloConfirmar = mensajes.getString("opcionTituloConfirmar");
+        this.mensajeTicket = mensajes.getString("creado");
+        this.mensajeErrorPlaca = mensajes.getString("mensajeErrorPlaca");
+        this.tituloErrorDatos = mensajes.getString("tituloErrorDatos");
+        this.codigo = mensajes.getString("codigo");
+        this.fechaIngreso = mensajes.getString("fechaIngreso");
+        this.placa = mensajes.getString("placa");
+        this.marca = mensajes.getString("marca");
+        this.modelo = mensajes.getString("modelo");
+        this.cedula = mensajes.getString("cedula");
+        this.nombre = mensajes.getString("nombre");
+        this.direccion = mensajes.getString("direccion");
+        this.telefono = mensajes.getString("telefono");
+        
+        listarTickets();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -206,7 +229,7 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        listarTickets();
+         listarTickets();
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void ftxPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxPlacaKeyTyped
@@ -220,7 +243,7 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
 
                     Object[] opcionesJPanel = {opcionSi, opcionEditar, opcionCancelar};
                     int confirmar = JOptionPane.showOptionDialog(null,
-                            "<html>"+opcion1parte1+" <strong>" + ftxPlaca.getValue() + "</strong> "+opcion1parte2+"</html>",
+                            "<html>" + opcion1parte1 + " <strong>" + ftxPlaca.getValue() + "</strong> " + opcion1parte2 + "</html>",
                             opcionTituloConfirmar,
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
@@ -229,7 +252,7 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
                         this.vistaEditarDatosVehiculo.setVisible(false);
                         Calendar c = Calendar.getInstance();
                         controladorTicket.ingresoVehiculoTicket(c.getTime(), ftxPlaca.getValue().toString());
-                        JOptionPane.showMessageDialog(null, "TICKET "+ mensajeTicket, "TICKET", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "TICKET " + mensajeTicket, "TICKET", JOptionPane.INFORMATION_MESSAGE);
                         listarTickets();
                     } else if (confirmar == 1) {
                         this.setVisible(false);
@@ -239,13 +262,10 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
                 } else {
                     Object[] opcionesJPanel = {opcionSi, opcionCancelar};
                     int confirmar = JOptionPane.showOptionDialog(null,
-                            "<html>"+opcion2parte1 +" <strong>" + ftxPlaca.getValue() + "</strong> "+ opcion2parte2+"</html>",
+                            "<html>" + opcion2parte1 + " <strong>" + ftxPlaca.getValue() + "</strong> " + opcion2parte2 + "</html>",
                             opcionTituloConfirmar,
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
-                    /*JOptionPane.showConfirmDialog(null,
-                            "<html>NO EXISTE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> DESEA REGISTRAR LA NUEVA PLACA?</html>");
-                     */
                     if (JOptionPane.OK_OPTION == confirmar) {
                         this.setVisible(false);
                         vistaAgregarVehiculo.setPlaca(ftxPlaca.getValue());
@@ -254,26 +274,26 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "PLACA NO VALIDA", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, mensajeErrorPlaca, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_ftxPlacaKeyTyped
 
     private void listarTickets() {
-        DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
-        modelo.setColumnCount(0);
-        modelo.setRowCount(0);
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("FEHCA INGRESO");
-        modelo.addColumn("PLACA");
-        modelo.addColumn("MARCA");
-        modelo.addColumn("MODELO");
-        modelo.addColumn("CEDULA");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("DIRECCION");
-        modelo.addColumn("TELEFONO");
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblTickets.getModel();
+        modeloTabla.setColumnCount(0);
+        modeloTabla.setRowCount(0);
+        modeloTabla.addColumn(codigo);
+        modeloTabla.addColumn(fechaIngreso);
+        modeloTabla.addColumn(placa);
+        modeloTabla.addColumn(marca);
+        modeloTabla.addColumn(modelo);
+        modeloTabla.addColumn(cedula);
+        modeloTabla.addColumn(nombre);
+        modeloTabla.addColumn(direccion);
+        modeloTabla.addColumn(telefono);
 
-        this.tblTickets.setModel(modelo);
+        this.tblTickets.setModel(modeloTabla);
         Object[] fila = new Object[9];
 
         for (Ticket datosTicket : controladorTicket.listaIngresoDeTickets()) {
@@ -287,9 +307,9 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
             fila[6] = datosVehiculo.getCliente().getNombre();
             fila[7] = datosVehiculo.getCliente().getDireccion();
             fila[8] = datosVehiculo.getCliente().getTelefono();
-            modelo.addRow(fila);
+            modeloTabla.addRow(fila);
         }
-        this.tblTickets.setModel(modelo);
+        this.tblTickets.setModel(modeloTabla);
     }
 
     private String fechaActual(Date fecha) {

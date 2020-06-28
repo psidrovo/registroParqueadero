@@ -24,25 +24,42 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
 
     private VistaAgregarCliente vistaAgregarCliente;
     private VistaIngresoParqueadero vistaIngresoParqueadero;
+    
+    private String tituloErrorDatos;
+    private String mensajeErrorPlaca;
+    private String mensajeErrorDatos;
+    private String mensajeExistePlaca1;
+    private String mensajeExistePlaca2;
+    private String mensajeTicket;
+    private String mensajeNoExisteCedula;
+    private String mensajeResgistrarCliente;
 
     public VistaAgregarVehiculo(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarCliente vistaAgregarCliente, VistaIngresoParqueadero vistaIngresoParqueadero) {
         initComponents();
-
         this.controladorCliente = controladorCliente;
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
         this.vistaAgregarCliente = vistaAgregarCliente;
         this.vistaIngresoParqueadero = vistaIngresoParqueadero;
     }
-public void SetCambiarIdioma(ResourceBundle mensajes){
-        pnVehiculo.setName(mensajes.getString("panelVehiculo"));
-        lblCedula.setText(mensajes.getString("cedulaAgregarVehiculo"));
-        lblPlaca.setText(mensajes.getString("placaAgregarVehiculo"));
-        lblMarca.setText(mensajes.getString("marcaAgregarVehiculo"));
-        lblModelo.setText(mensajes.getString("modeloAgregarVehiculo"));
-        btRegistrar.setText(mensajes.getString("botonRegistrarVehiculo"));
-        //falta option panel 
+
+    public void setCambiarIdioma(ResourceBundle mensajes) {
+        this.pnVehiculo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, mensajes.getString("panelVehiculo"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); 
+        this.lblCedula.setText(mensajes.getString("cedula"));
+        this.lblPlaca.setText(mensajes.getString("placa"));
+        this.lblMarca.setText(mensajes.getString("marca"));
+        this.lblModelo.setText(mensajes.getString("modelo"));
+        this.btRegistrar.setText(mensajes.getString("resgistrar"));
+        this.mensajeErrorPlaca = mensajes.getString("mensajeErrorPlaca");
+        this.mensajeErrorDatos = mensajes.getString("mensajeErrorDatos");
+        this.tituloErrorDatos = mensajes.getString("tituloErrorDatos");
+        this.mensajeExistePlaca1= mensajes.getString("mensajeExistePlaca1");
+        this.mensajeExistePlaca2= mensajes.getString("mensajeExistePlaca2");
+        this.mensajeTicket = mensajes.getString("creado");
+        this.mensajeNoExisteCedula = mensajes.getString("mensajeNoExisteCedula");
+        this.mensajeResgistrarCliente = mensajes.getString("mensajeResgistrarCliente");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,35 +191,34 @@ public void SetCambiarIdioma(ResourceBundle mensajes){
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
         if (ftxPlaca.getValue() == null) {
-            JOptionPane.showMessageDialog(null, "PLACA NO VALIDA", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, mensajeErrorPlaca, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
         } else {
             if (txtCedula.getText().equals("") || txtMarca.getText().equals("") || txtModelo.getText().equals("") || ftxPlaca.getValue().toString().equals("")) {
-                JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, mensajeErrorDatos, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
             } else {
                 if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
-                    JOptionPane.showMessageDialog(null, "<html>LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> YA EXISTE INGRESE UNA PLACA NO EXISTENTE</html>", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
-                    
+                    JOptionPane.showMessageDialog(null, "<html>"+mensajeExistePlaca1+" <strong>" + ftxPlaca.getValue() + "</strong> "+mensajeExistePlaca2+"</html>", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+
                 } else {
                     controladorCliente.crearVehiculo(ftxPlaca.getValue().toString(), txtMarca.getText(), txtModelo.getText(), txtCedula.getText());
                     this.setVisible(false);
                     Calendar c = Calendar.getInstance();
-                    controladorTicket.ingresoVehiculoTicket(c.getTime(),ftxPlaca.getValue().toString());
-                    JOptionPane.showMessageDialog(null, "TICKET CREADO", "TICKET", JOptionPane.INFORMATION_MESSAGE);
+                    controladorTicket.ingresoVehiculoTicket(c.getTime(), ftxPlaca.getValue().toString());
+                    JOptionPane.showMessageDialog(null, "TICKET "+mensajeTicket, "TICKET", JOptionPane.INFORMATION_MESSAGE);
                     vistaIngresoParqueadero.setVisible(true);
                 }
             }
         }
     }//GEN-LAST:event_btRegistrarActionPerformed
 
-  
-    public void setEditarCamposRegresarCliente(String cedula){
+    public void setEditarCamposRegresarCliente(String cedula) {
         txtMarca.setEnabled(true);
         txtModelo.setEnabled(true);
         ftxPlaca.setEnabled(true);
         txtCedula.setEnabled(false);
         txtCedula.setText(cedula);
     }
-    
+
     public void setVistaIngresoParqueadero(VistaIngresoParqueadero vistaIngresoParqueadero) {
         this.vistaIngresoParqueadero = vistaIngresoParqueadero;
     }
@@ -215,7 +231,7 @@ public void SetCambiarIdioma(ResourceBundle mensajes){
                 txtModelo.setEnabled(true);
             } else {
                 int confirmar = JOptionPane.showConfirmDialog(null,
-                        "<html>NO EXISTE CEDULA <strong>" + txtCedula.getText() + "</strong> DESEA REGISTRAR AL CLIENTE?</html>");
+                        "<html>"+mensajeNoExisteCedula+" <strong>" + txtCedula.getText() + "</strong> "+mensajeResgistrarCliente+"</html>");
 
                 if (JOptionPane.OK_OPTION == confirmar) {
                     this.setVisible(false);

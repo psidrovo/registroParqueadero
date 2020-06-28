@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -25,17 +25,17 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelVehiculo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVehiculo" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelMarca" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMarca" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           <Component id="txtMarca" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelModelo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelPlaca" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblModelo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPlaca" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -45,37 +45,34 @@
                       </Group>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="labelCliente" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelCedula" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtCedula" max="32767" attributes="0"/>
-                                  <Component id="txtNombre" alignment="1" pref="226" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtCedula" max="32767" attributes="0"/>
+                              <Component id="txtNombre" alignment="1" pref="226" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelDireccion" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="labelTelefono" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -101,43 +98,43 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelVehiculo" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblVehiculo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ftxPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelCliente" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -153,7 +150,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="labelCedula">
+    <Component class="javax.swing.JLabel" name="lblCedula">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -161,7 +158,7 @@
         <Property name="text" type="java.lang.String" value="CEDULA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelNombre">
+    <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -169,7 +166,7 @@
         <Property name="text" type="java.lang.String" value="NOMBRE"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelDireccion">
+    <Component class="javax.swing.JLabel" name="lblDireccion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -177,7 +174,7 @@
         <Property name="text" type="java.lang.String" value="DIRECCION"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelTelefono">
+    <Component class="javax.swing.JLabel" name="lblTelefono">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -227,7 +224,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGuardarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelCliente">
+    <Component class="javax.swing.JLabel" name="lblCliente">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -251,7 +248,7 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelPlaca">
+    <Component class="javax.swing.JLabel" name="lblPlaca">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -259,7 +256,7 @@
         <Property name="text" type="java.lang.String" value="PLACA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelModelo">
+    <Component class="javax.swing.JLabel" name="lblModelo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -267,7 +264,7 @@
         <Property name="text" type="java.lang.String" value="MODELO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelMarca">
+    <Component class="javax.swing.JLabel" name="lblMarca">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>
@@ -275,7 +272,7 @@
         <Property name="text" type="java.lang.String" value="MARCA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelVehiculo">
+    <Component class="javax.swing.JLabel" name="lblVehiculo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="1"/>

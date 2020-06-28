@@ -28,6 +28,30 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
 
+    private String tituloErrorDatos;
+    private String mensajeErrorTicket;
+    private String mensajeErrorCodigo;
+    private String mensajeSalida1;
+    private String mensajeSalida2;
+    private String mensajeSalida3;
+    private String mensajeSalida4;
+    private String mensajeSalida5;
+
+    //Tabla
+    private String codigo;
+    private String fechaIngreso;
+    private String fechaSalida;
+    private String total;
+    private String minutos;
+    private String fracciones;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private String cedula;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+
     public VistaSalidaParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo) {
         initComponents();
 
@@ -35,10 +59,36 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
         this.controladorTicket = controladorTicket;
         this.controladorVehiculo = controladorVehiculo;
     }
-    
-    public void SetCambiarIdioma(ResourceBundle mensajes){
-        pnIngresarTicket.setName(mensajes.getString("panelSalidaTicket"));
-        lblCodigo.setText(mensajes.getString("salidaCodigo"));
+
+    public void SetCambiarIdioma(ResourceBundle mensajes) {
+        this.pnSalidaTicket.setBorder(javax.swing.BorderFactory.createTitledBorder(null, mensajes.getString("panelSalidaTicket"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); 
+        this.lblCodigo.setText(mensajes.getString("codigo"));
+
+        this.tituloErrorDatos = mensajes.getString("tituloErrorDatos");
+        this.mensajeErrorTicket = mensajes.getString("mensajeErrorTicket");
+        this.mensajeErrorCodigo = mensajes.getString("mensajeErrorCodigo");
+
+        this.mensajeSalida1 = mensajes.getString("mensajeSalida1");
+        this.mensajeSalida2 = mensajes.getString("mensajeSalida2");
+        this.mensajeSalida3 = mensajes.getString("mensajeSalida3");
+        this.mensajeSalida4 = mensajes.getString("mensajeSalida4");
+        this.mensajeSalida5 = mensajes.getString("mensajeSalida5");
+
+        this.codigo = mensajes.getString("codigo");
+        this.fechaIngreso = mensajes.getString("fechaIngreso");
+        this.fechaSalida = mensajes.getString("fechaSalida");
+        this.total = mensajes.getString("total");
+        this.minutos = mensajes.getString("minutos");
+        this.fracciones = mensajes.getString("fracciones");
+        this.placa = mensajes.getString("placa");
+        this.marca = mensajes.getString("marca");
+        this.modelo = mensajes.getString("modelo");
+        this.cedula = mensajes.getString("cedula");
+        this.nombre = mensajes.getString("nombre");
+        this.direccion = mensajes.getString("direccion");
+        this.telefono = mensajes.getString("telefono");
+        
+        listarTickets();
     }
 
     /**
@@ -50,31 +100,31 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnIngresarTicket = new javax.swing.JPanel();
+        pnSalidaTicket = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTickets = new javax.swing.JTable();
         ftxCodigo = new javax.swing.JFormattedTextField();
         lblCodigo = new javax.swing.JLabel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
             }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
-        pnIngresarTicket.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SALIDA TICKET", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
+        pnSalidaTicket.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SALIDA TICKET", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
 
         tblTickets.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         tblTickets.setModel(new javax.swing.table.DefaultTableModel(
@@ -107,32 +157,32 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
         lblCodigo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblCodigo.setText("CODIGO:");
 
-        javax.swing.GroupLayout pnIngresarTicketLayout = new javax.swing.GroupLayout(pnIngresarTicket);
-        pnIngresarTicket.setLayout(pnIngresarTicketLayout);
-        pnIngresarTicketLayout.setHorizontalGroup(
-            pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnSalidaTicketLayout = new javax.swing.GroupLayout(pnSalidaTicket);
+        pnSalidaTicket.setLayout(pnSalidaTicketLayout);
+        pnSalidaTicketLayout.setHorizontalGroup(
+            pnSalidaTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnSalidaTicketLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(lblCodigo)
                 .addGap(18, 18, 18)
                 .addComponent(ftxCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1636, 1636, 1636))
-            .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+            .addGroup(pnSalidaTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnSalidaTicketLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1812, Short.MAX_VALUE)
                     .addContainerGap()))
         );
-        pnIngresarTicketLayout.setVerticalGroup(
-            pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+        pnSalidaTicketLayout.setVerticalGroup(
+            pnSalidaTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnSalidaTicketLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnSalidaTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ftxCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodigo))
                 .addGap(622, 622, 622))
-            .addGroup(pnIngresarTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnIngresarTicketLayout.createSequentialGroup()
+            .addGroup(pnSalidaTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnSalidaTicketLayout.createSequentialGroup()
                     .addGap(42, 42, 42)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -144,13 +194,13 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnIngresarTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnSalidaTicket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(pnIngresarTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnSalidaTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
 
@@ -170,45 +220,45 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
                     Calendar c = Calendar.getInstance();
                     Ticket mensaje = controladorTicket.calcularPago(codigo, c.getTime());
                     int confirmar = JOptionPane.showConfirmDialog(null,
-                            "<html>EL VALOR A PAGAR ES <strong>" + mensaje.getTotal() + "</strong> DE <strong>" + mensaje.getMinutos()+ "</strong> MINUTOS TOTAL <strong> "+ mensaje.getFracciones()+ "</strong> FRACCIONES</html> \n DESEA CONTINUAR?");
+                            "<html>" + mensajeSalida1 + " <strong>" + mensaje.getTotal() + "</strong> " + mensajeSalida2 + " <strong>" + mensaje.getMinutos() + "</strong> " + mensajeSalida3 + " <strong> " + mensaje.getFracciones() + "</strong> " + mensajeSalida4 + "</html> \n" + mensajeSalida5);
 
                     if (JOptionPane.OK_OPTION == confirmar) {
                         controladorTicket.salidaVehiculoTicket(codigo, c.getTime());
                         listarTickets();
                         ftxCodigo.setValue(0);
-                    }else{
+                    } else {
                         mensaje.setFechaHoraSalida(null);
                         mensaje.setMinutos(0);
                         mensaje.setTotal(0);
                         mensaje.setFracciones(0);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "TICKET NO EXISTENTE", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "TICKET " + mensajeErrorTicket, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "FORMATO DE CODIGO NO VALIDO", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, mensajeErrorCodigo, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_ftxCodigoKeyTyped
     private void listarTickets() {
-        DefaultTableModel modelo = (DefaultTableModel) tblTickets.getModel();
-        modelo.setColumnCount(0);
-        modelo.setRowCount(0);
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("FEHCA INGRESO");
-        modelo.addColumn("FEHCA SALIDA");
-        modelo.addColumn("TOTAL $");
-        modelo.addColumn("MINUTOS");
-        modelo.addColumn("FRACCIONES");
-        modelo.addColumn("PLACA");
-        modelo.addColumn("MARCA");
-        modelo.addColumn("MODELO");
-        modelo.addColumn("CEDULA");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("DIRECCION");
-        modelo.addColumn("TELEFONO");
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblTickets.getModel();
+        modeloTabla.setColumnCount(0);
+        modeloTabla.setRowCount(0);
+        modeloTabla.addColumn(codigo);
+        modeloTabla.addColumn(fechaIngreso);
+        modeloTabla.addColumn(fechaSalida);
+        modeloTabla.addColumn(total);
+        modeloTabla.addColumn(minutos);
+        modeloTabla.addColumn(fracciones);
+        modeloTabla.addColumn(placa);
+        modeloTabla.addColumn(marca);
+        modeloTabla.addColumn(modelo);
+        modeloTabla.addColumn(cedula);
+        modeloTabla.addColumn(nombre);
+        modeloTabla.addColumn(direccion);
+        modeloTabla.addColumn(telefono);
 
-        this.tblTickets.setModel(modelo);
+        this.tblTickets.setModel(modeloTabla);
         Object[] fila = new Object[13];
 
         for (Ticket datosTicket : controladorTicket.listaSalidaDeTickets()) {
@@ -226,9 +276,9 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
             fila[10] = datosVehiculo.getCliente().getNombre();
             fila[11] = datosVehiculo.getCliente().getDireccion();
             fila[12] = datosVehiculo.getCliente().getTelefono();
-            modelo.addRow(fila);
+            modeloTabla.addRow(fila);
         }
-        this.tblTickets.setModel(modelo);
+        this.tblTickets.setModel(modeloTabla);
     }
 
     private String fechaActual(Date fecha) {
@@ -241,7 +291,7 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField ftxCodigo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodigo;
-    private javax.swing.JPanel pnIngresarTicket;
+    private javax.swing.JPanel pnSalidaTicket;
     private javax.swing.JTable tblTickets;
     // End of variables declaration//GEN-END:variables
 }

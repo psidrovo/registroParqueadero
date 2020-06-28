@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.*;
 import ec.edu.ups.modelo.*;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,13 +24,10 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
 
     private VistaIngresoParqueadero vistaIngresoParqueadero;
 
-    /**
-     * Creates new form VistaEditarDatosVehiculo
-     */
-    public void datosDeCliente() {
-        //txtModificarCedula.setText();
-    }
-
+    private String tituloErrorDatos;
+    private String mensajeErrorDatos;
+    private String mensajeTicket;
+    
     public VistaEditarDatosVehiculo(ControladorCliente controladorU, ControladorTicket controladorT, ControladorVehiculo controladorV, VistaIngresoParqueadero vistaIngresoParqueadero) {
         initComponents();
         this.controladorCliente = controladorU;
@@ -38,7 +36,22 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
         this.vistaIngresoParqueadero = vistaIngresoParqueadero;
         this.cedula = "";
     }
-
+public void setCambiarIdioma(ResourceBundle mensajes) {
+        this.lblCliente.setText(mensajes.getString("cliente"));
+        this.lblVehiculo.setText(mensajes.getString("vehiculo"));
+        this.lblCedula.setText(mensajes.getString("cedula"));
+        this.lblNombre.setText(mensajes.getString("nombre"));
+        this.lblDireccion.setText(mensajes.getString("direccion"));
+        this.lblTelefono.setText(mensajes.getString("telefono"));
+        this.lblPlaca.setText(mensajes.getString("placa"));
+        this.lblMarca.setText(mensajes.getString("marca"));
+        this.lblModelo.setText(mensajes.getString("modelo"));
+        this.btGuardar.setText(mensajes.getString("guardar"));
+        this.btCancelar.setText(mensajes.getString("cancelar"));
+        this.mensajeErrorDatos = mensajes.getString("mensajeErrorDatos");
+        this.tituloErrorDatos = mensajes.getString("tituloErrorDatos");
+        this.mensajeTicket = mensajes.getString("creado");
+    }
     public void setPlaca(String placa) {
         ftxPlaca.setValue(placa);
     }
@@ -56,22 +69,22 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelCedula = new javax.swing.JLabel();
-        labelNombre = new javax.swing.JLabel();
-        labelDireccion = new javax.swing.JLabel();
-        labelTelefono = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        lblTelefono = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         btGuardar = new javax.swing.JButton();
-        labelCliente = new javax.swing.JLabel();
+        lblCliente = new javax.swing.JLabel();
         txtModelo = new javax.swing.JTextField();
         txtMarca = new javax.swing.JTextField();
-        labelPlaca = new javax.swing.JLabel();
-        labelModelo = new javax.swing.JLabel();
-        labelMarca = new javax.swing.JLabel();
-        labelVehiculo = new javax.swing.JLabel();
+        lblPlaca = new javax.swing.JLabel();
+        lblModelo = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        lblVehiculo = new javax.swing.JLabel();
         btCancelar = new javax.swing.JToggleButton();
         ftxPlaca = new javax.swing.JFormattedTextField();
 
@@ -93,17 +106,17 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
             }
         });
 
-        labelCedula.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelCedula.setText("CEDULA");
+        lblCedula.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblCedula.setText("CEDULA");
 
-        labelNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelNombre.setText("NOMBRE");
+        lblNombre.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblNombre.setText("NOMBRE");
 
-        labelDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelDireccion.setText("DIRECCION");
+        lblDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblDireccion.setText("DIRECCION");
 
-        labelTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelTelefono.setText("TELEFONO");
+        lblTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblTelefono.setText("TELEFONO");
 
         txtNombre.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
 
@@ -122,8 +135,8 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
             }
         });
 
-        labelCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelCliente.setText("CLIENTE");
+        lblCliente.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblCliente.setText("CLIENTE");
 
         txtModelo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtModelo.setEnabled(false);
@@ -131,17 +144,17 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
         txtMarca.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtMarca.setEnabled(false);
 
-        labelPlaca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelPlaca.setText("PLACA");
+        lblPlaca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPlaca.setText("PLACA");
 
-        labelModelo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelModelo.setText("MODELO");
+        lblModelo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblModelo.setText("MODELO");
 
-        labelMarca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelMarca.setText("MARCA");
+        lblMarca.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblMarca.setText("MARCA");
 
-        labelVehiculo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        labelVehiculo.setText("VEHICULO");
+        lblVehiculo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblVehiculo.setText("VEHICULO");
 
         btCancelar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btCancelar.setText("CANCELAR");
@@ -166,44 +179,42 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelVehiculo)
+                    .addComponent(lblVehiculo)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelMarca)
+                            .addComponent(lblMarca)
                             .addGap(53, 53, 53)
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelModelo)
-                                .addComponent(labelPlaca))
+                                .addComponent(lblModelo)
+                                .addComponent(lblPlaca))
                             .addGap(43, 43, 43)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                                 .addComponent(ftxPlaca)))))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblCliente)
+                            .addGap(314, 314, 314))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblNombre)
+                                .addComponent(lblCedula))
+                            .addGap(77, 77, 77)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtCedula)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                            .addGap(11, 11, 11)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelCliente)
-                                .addGap(314, 314, 314))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelNombre)
-                                    .addComponent(labelCedula))
-                                .addGap(77, 77, 77)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtCedula)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
-                                .addGap(11, 11, 11))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelDireccion)
+                                .addComponent(lblDireccion)
                                 .addGap(53, 53, 53))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(labelTelefono)
+                                .addComponent(lblTelefono)
                                 .addGap(62, 62, 62)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,36 +232,36 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelVehiculo)
+                        .addComponent(lblVehiculo)
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelPlaca)
+                            .addComponent(lblPlaca)
                             .addComponent(ftxPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelModelo)
+                            .addComponent(lblModelo)
                             .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelMarca)
+                            .addComponent(lblMarca)
                             .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelCliente)
+                        .addComponent(lblCliente)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelCedula)
+                            .addComponent(lblCedula)
                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNombre)
+                            .addComponent(lblNombre)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelDireccion)
+                            .addComponent(lblDireccion)
                             .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelTelefono)
+                            .addComponent(lblTelefono)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -274,7 +285,7 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         if (txtCedula.getText().equals("") || txtDireccion.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS DATOS", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, mensajeErrorDatos, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
         } else {
             if (controladorCliente.verCliente(txtCedula.getText()) == null) {
 
@@ -286,7 +297,7 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
             this.setVisible(false);
             Calendar c = Calendar.getInstance();
             controladorTicket.ingresoVehiculoTicket(c.getTime(), ftxPlaca.getValue().toString());
-            JOptionPane.showMessageDialog(null, "TICKET CREADO", "TICKET", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "TICKET "+mensajeTicket, "TICKET", JOptionPane.INFORMATION_MESSAGE);
             vistaIngresoParqueadero.setVisible(true);
 
         }
@@ -303,15 +314,15 @@ public class VistaEditarDatosVehiculo extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton btCancelar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JFormattedTextField ftxPlaca;
-    private javax.swing.JLabel labelCedula;
-    private javax.swing.JLabel labelCliente;
-    private javax.swing.JLabel labelDireccion;
-    private javax.swing.JLabel labelMarca;
-    private javax.swing.JLabel labelModelo;
-    private javax.swing.JLabel labelNombre;
-    private javax.swing.JLabel labelPlaca;
-    private javax.swing.JLabel labelTelefono;
-    private javax.swing.JLabel labelVehiculo;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblModelo;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPlaca;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblVehiculo;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtMarca;
