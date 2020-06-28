@@ -76,7 +76,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         this.opcion1parte1 = mensajes.getString("confirmarPlaca1");
         this.opcion1parte2 = mensajes.getString("confirmarPlaca2");
         this.opcion2parte1 = mensajes.getString("noExistePlaca1");
-        this.opcion2parte2 = mensajes.getString("noExistePlaca1");
+        this.opcion2parte2 = mensajes.getString("noExistePlaca2");
         this.opcionTituloConfirmar = mensajes.getString("opcionTituloConfirmar");
         this.mensajeTicket = mensajes.getString("creado");
         this.mensajeErrorPlaca = mensajes.getString("mensajeErrorPlaca");
@@ -230,6 +230,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
          listarTickets();
+         ftxPlaca.setValue("");
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void ftxPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxPlacaKeyTyped

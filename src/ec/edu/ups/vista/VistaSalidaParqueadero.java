@@ -209,6 +209,7 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         listarTickets();
+        ftxCodigo.setValue(0);
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void ftxCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxCodigoKeyTyped

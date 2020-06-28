@@ -133,6 +133,7 @@ public void setCambiarIdioma(){
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+        desktopPane.setLayout(null);
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/hora.png"))); // NOI18N
         desktopPane.add(lblFondo);
@@ -165,6 +166,7 @@ public void setCambiarIdioma(){
         });
         mnInicio.add(mnSalirVehiculo);
 
+        mnListarTickets.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         mnListarTickets.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/directorio.png"))); // NOI18N
         mnListarTickets.setText("Listar tickets");
         mnListarTickets.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +228,7 @@ public void setCambiarIdioma(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
         );
 
         pack();

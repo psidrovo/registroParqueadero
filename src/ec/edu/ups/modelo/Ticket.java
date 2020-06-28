@@ -97,6 +97,7 @@ public class Ticket {
         long millisSalida = fechaHoraSalida.getTime();
         long milisDiferencia = millisSalida-millisIngreso;
         milisDiferencia = milisDiferencia/60000;
+        milisDiferencia=milisDiferencia+1;
         this.setMinutos(Integer.parseInt(milisDiferencia+""));
         milisDiferencia = (milisDiferencia/10)+1;         
         this.setFracciones(Integer.parseInt(milisDiferencia+""));
