@@ -9,6 +9,7 @@ import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +34,15 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
         this.vistaAgregarCliente = vistaAgregarCliente;
         this.vistaIngresoParqueadero = vistaIngresoParqueadero;
     }
-
+public void SetCambiarIdioma(ResourceBundle mensajes){
+        pnVehiculo.setName(mensajes.getString("panelVehiculo"));
+        lblCedula.setText(mensajes.getString("cedulaAgregarVehiculo"));
+        lblPlaca.setText(mensajes.getString("placaAgregarVehiculo"));
+        lblMarca.setText(mensajes.getString("marcaAgregarVehiculo"));
+        lblModelo.setText(mensajes.getString("modeloAgregarVehiculo"));
+        btRegistrar.setText(mensajes.getString("botonRegistrarVehiculo"));
+        //falta option panel 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

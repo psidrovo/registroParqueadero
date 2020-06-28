@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +33,17 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
 
     private VistaAgregarVehiculo vistaAgregarVehiculo;
     private VistaEditarDatosVehiculo vistaEditarDatosVehiculo;
+    
+    //optionPanel
+    private String opcionSi;
+    private String opcionCancelar;
+    private String opcionEditar;
+    private String opcion1parte1;
+    private String opcion1parte2;
+    private String opcion2parte1;
+    private String opcion2parte2;
+    private String opcionTituloConfirmar;
+    private String mensajeTicket;
 
     public VistaIngresoParqueadero(ControladorCliente controladorCliente, ControladorTicket controladorTicket, ControladorVehiculo controladorVehiculo, VistaAgregarVehiculo vistaAgregarVehiculo, VistaEditarDatosVehiculo vistaEditarDatosVehiculo) {
         initComponents();
@@ -40,8 +52,25 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         this.controladorVehiculo = controladorVehiculo;
         this.vistaAgregarVehiculo = vistaAgregarVehiculo;
         this.vistaEditarDatosVehiculo = vistaEditarDatosVehiculo;
+        this.opcionSi = "SI";
+        this.opcionCancelar = "CANCELAR";
+        this.opcionEditar = "EDITAR";
+        this.opcion1parte1="CONFIRME SI LOS DATOS DE LA PLACA";
+        this.opcion1parte2="SON CORRECTOS PARA CREAR EL TICKET";
+        this.opcion2parte1="NO EXISTE LA PLACA";
+        this.opcion2parte2="DESEA REGISTRAR LA NUEVA PLACA?";
+        this.opcionTituloConfirmar="CONFIRMACION";
+        this.mensajeTicket="CREADO";
     }
+public void setCambiarIdioma(ResourceBundle mensajes) {
+        pnIngresarTicket.setName(mensajes.getString("panelIngresarTicket"));
+        lblPlaca.setText(mensajes.getString("placa"));
+        opcionSi = mensajes.getString("si");
+        opcionCancelar = mensajes.getString("cancelar");
+        opcionEditar = mensajes.getString("editar");
 
+        //falta tabla y option panel
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,33 +214,33 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         if (validar == '\n') {
             if (ftxPlaca.getValue() != null) {
                 if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
-                    
+
                     this.vistaEditarDatosVehiculo.setPlaca(ftxPlaca.getValue().toString());
                     this.vistaEditarDatosVehiculo.setVisible(true);
-                    
-                    Object[] opcionesJPanel = {"SI", "EDITAR", "CANCELAR"};
+
+                    Object[] opcionesJPanel = {opcionSi, opcionEditar, opcionCancelar};
                     int confirmar = JOptionPane.showOptionDialog(null,
-                            "<html>CONFIRME SI LOS DATOS DE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> SON CORRECTOS PARA CREAR EL TICKET</html>",
-                            "CONFIRMACION",
+                            "<html>"+opcion1parte1+" <strong>" + ftxPlaca.getValue() + "</strong> "+opcion1parte2+"</html>",
+                            opcionTituloConfirmar,
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
-                    
+
                     if (JOptionPane.OK_OPTION == confirmar) {
                         this.vistaEditarDatosVehiculo.setVisible(false);
                         Calendar c = Calendar.getInstance();
                         controladorTicket.ingresoVehiculoTicket(c.getTime(), ftxPlaca.getValue().toString());
-                        JOptionPane.showMessageDialog(null, "TICKET CREADO", "TICKET", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "TICKET "+ mensajeTicket, "TICKET", JOptionPane.INFORMATION_MESSAGE);
                         listarTickets();
                     } else if (confirmar == 1) {
                         this.setVisible(false);
-                    }else{
+                    } else {
                         this.vistaEditarDatosVehiculo.setVisible(false);
                     }
                 } else {
-                    Object[] opcionesJPanel = {"SI", "CANCELAR"};
+                    Object[] opcionesJPanel = {opcionSi, opcionCancelar};
                     int confirmar = JOptionPane.showOptionDialog(null,
-                            "<html>NO EXISTE LA PLACA <strong>" + ftxPlaca.getValue() + "</strong> DESEA REGISTRAR LA NUEVA PLACA?</html>",
-                            "CONFIRMACION",
+                            "<html>"+opcion2parte1 +" <strong>" + ftxPlaca.getValue() + "</strong> "+ opcion2parte2+"</html>",
+                            opcionTituloConfirmar,
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
                     /*JOptionPane.showConfirmDialog(null,

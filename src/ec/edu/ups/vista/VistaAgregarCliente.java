@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorTicket;
 import ec.edu.ups.controlador.ControladorVehiculo;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +31,15 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
         this.controladorVehiculo = controladorVehiculo;
         this.vistaAgregarVehiculo = vistaAgregarVehiculo;
     }
-
+public void setCambiarIdioma(ResourceBundle mensajes){
+        pnAgregarCliente.setName(mensajes.getString("panelCliente"));
+        lblCedula.setText(mensajes.getString("cedulaAgregarCliente"));
+        lblNombre.setText(mensajes.getString("nombreAgregarCliente"));
+        lblDireccion.setText(mensajes.getString("direccionAgregarCliente"));
+        lblTelefono.setText(mensajes.getString("telefonoAgregarCliente"));
+        btRegistrar.setText(mensajes.getString("botonRegistrarCliente"));
+        //falta option panel
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,8 +50,8 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         pnAgregarCliente = new javax.swing.JPanel();
-        lblApellido = new javax.swing.JLabel();
-        lblCorreo = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        lblTelefono = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
@@ -53,11 +62,11 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
 
         pnAgregarCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CLIENTE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 18))); // NOI18N
 
-        lblApellido.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblApellido.setText("DIRECCION");
+        lblDireccion.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblDireccion.setText("DIRECCION");
 
-        lblCorreo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblCorreo.setText("TELEFONO");
+        lblTelefono.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblTelefono.setText("TELEFONO");
 
         txtCedula.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -96,8 +105,8 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
                 .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblCedula)
-                    .addComponent(lblApellido)
-                    .addComponent(lblCorreo))
+                    .addComponent(lblDireccion)
+                    .addComponent(lblTelefono))
                 .addGap(45, 45, 45)
                 .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtDireccion)
@@ -123,11 +132,11 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
                     .addComponent(txtNombre))
                 .addGap(10, 10, 10)
                 .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtDireccion))
                 .addGap(10, 10, 10)
                 .addGroup(pnAgregarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTelefono))
                 .addGap(18, 18, 18)
                 .addComponent(btRegistrar)
@@ -191,10 +200,10 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrar;
-    private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCedula;
-    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelefono;
     private javax.swing.JPanel pnAgregarCliente;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDireccion;

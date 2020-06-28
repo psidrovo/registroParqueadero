@@ -16,6 +16,8 @@ import ec.edu.ups.idao.ITicketDAO;
 import ec.edu.ups.idao.IVehiculoDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -43,6 +45,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private ControladorTicket controladorTicket;
     private ControladorVehiculo controladorVehiculo;
 
+    private ResourceBundle mensajes;
+    private Locale localizacion;
+    
     public VistaPrincipal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -78,6 +83,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.desktopPane.add(vistaSalidaParqueadero);
         this.desktopPane.add(vistaListarTickets);
         this.desktopPane.add(vistaEditarDatosVehiculo);
+        
+        this.localizacion= new Locale("es", "EC");
+        this.mensajes=ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
     }
 
     private void Ocultar() {
@@ -88,7 +96,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.vistaListarTickets.setVisible(false);
         this.vistaEditarDatosVehiculo.setVisible(false);
     }
-
+public void setCambiarIdioma(){
+        mnSalir.setText(mensajes.getString("menuPrincipal"));
+        mnIngresar.setText(mensajes.getString("menuIngresarVehiculo"));
+        mnSalir.setText(mensajes.getString("menuSalirVehiculo"));
+        mnListar.setText(mensajes.getString("menuListarTickets"));
+        mnListar.setText(mensajes.getString("menuSalir"));
+        menuIdioma.setText(mensajes.getString("menuIdioma"));
+        menuItemEspañol.setText(mensajes.getString("menuItemEspañol"));
+        menuItemIngles.setText(mensajes.getString("menuItemIngles"));  
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,11 +118,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         lblFondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
+        mnSalir = new javax.swing.JMenu();
         mnIngresar = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
+        mnListar = new javax.swing.JMenuItem();
         menuIdioma = new javax.swing.JMenu();
         menuItemEspañol = new javax.swing.JMenuItem();
         menuItemIngles = new javax.swing.JMenuItem();
@@ -113,15 +130,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
+        desktopPane.setLayout(null);
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/hora.png"))); // NOI18N
         desktopPane.add(lblFondo);
         lblFondo.setBounds(630, 10, 30, 30);
 
-        fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/parque.png"))); // NOI18N
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("INICIO");
-        fileMenu.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        mnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/parque.png"))); // NOI18N
+        mnSalir.setMnemonic('f');
+        mnSalir.setText("INICIO");
+        mnSalir.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
 
         mnIngresar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         mnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/moving-truck.png"))); // NOI18N
@@ -132,7 +150,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 mnIngresarActionPerformed(evt);
             }
         });
-        fileMenu.add(mnIngresar);
+        mnSalir.add(mnIngresar);
 
         saveMenuItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         saveMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/enviado.png"))); // NOI18N
@@ -143,7 +161,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 saveMenuItemActionPerformed(evt);
             }
         });
-        fileMenu.add(saveMenuItem);
+        mnSalir.add(saveMenuItem);
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/directorio.png"))); // NOI18N
         jMenuItem1.setText("Listar tickets");
@@ -152,20 +170,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        fileMenu.add(jMenuItem1);
+        mnSalir.add(jMenuItem1);
 
-        exitMenuItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        exitMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/cerrar.png"))); // NOI18N
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Salir");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        mnListar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        mnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/cerrar.png"))); // NOI18N
+        mnListar.setMnemonic('x');
+        mnListar.setText("Salir");
+        mnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                mnListarActionPerformed(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
+        mnSalir.add(mnListar);
 
-        menuBar.add(fileMenu);
+        menuBar.add(mnSalir);
 
         menuIdioma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/edu/ups/multimedia/traduccion.png"))); // NOI18N
         menuIdioma.setMnemonic('e');
@@ -212,9 +230,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void mnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnListarActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    }//GEN-LAST:event_mnListarActionPerformed
 
     private void mnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnIngresarActionPerformed
         Ocultar();
@@ -232,11 +250,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void menuItemInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInglesActionPerformed
-        // TODO add your handling code here:
+        localizacion=new Locale("en", "EU");
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        setCambiarIdioma();
     }//GEN-LAST:event_menuItemInglesActionPerformed
 
     private void menuItemEspañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEspañolActionPerformed
-        // TODO add your handling code here:
+        localizacion=new Locale("es", "EC");
+        mensajes=ResourceBundle.getBundle("ec.edu.ups.idioma.mensajes", localizacion);
+        setCambiarIdioma();
     }//GEN-LAST:event_menuItemEspañolActionPerformed
 
     /**
@@ -282,8 +304,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblFondo;
     private javax.swing.JMenuBar menuBar;
@@ -291,6 +311,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemEspañol;
     private javax.swing.JMenuItem menuItemIngles;
     private javax.swing.JMenuItem mnIngresar;
+    private javax.swing.JMenuItem mnListar;
+    private javax.swing.JMenu mnSalir;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
