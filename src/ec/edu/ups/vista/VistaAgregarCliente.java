@@ -178,13 +178,15 @@ public class VistaAgregarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
-
+        //VALIDA CAMPOS VACIOS
         if (txtCedula.getText().equals("") || txtDireccion.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("")) {
             JOptionPane.showMessageDialog(null, mensajeErrorDatos, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
         } else {
+            //VALIDA SI LA CEDULA EXISTE
             if (controladorCliente.verCliente(txtCedula.getText()) != null) {
                 JOptionPane.showMessageDialog(null, "<html>" + opcion1parte1 + " <strong>" + txtCedula.getText() + "</strong> " + opcion1parte2 + "</html>", tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
             } else {
+                //CREAR VISTA
                 controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
                 this.setVisible(false);
                 vistaAgregarVehiculo.setVisible(true);

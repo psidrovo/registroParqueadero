@@ -87,6 +87,7 @@ public class VistaListarTickets extends javax.swing.JInternalFrame {
         for (Ticket datosTicket : controladorTicket.listaGeneralDeTickets()) {
             fila[0] = datosTicket.getNumero();
             fila[1] = fechaActual(datosTicket.getFechaHoraIngreso());
+            //SI ES QUE CAMPO ES NULL MUESTRA COMO VACIO
             if (datosTicket.getFechaHoraSalida() != null) {
                 fila[2] = fechaActual(datosTicket.getFechaHoraSalida());
             } else {

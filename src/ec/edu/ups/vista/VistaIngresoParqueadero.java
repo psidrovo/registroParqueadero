@@ -238,7 +238,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         if (validar == '\n') {
             if (ftxPlaca.getValue() != null) {
                 if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
-
+                    //HABLITA VENTANA CON LOS DATOS DE LA PLACA Y SU DUEÑO
                     this.vistaEditarDatosVehiculo.setPlaca(ftxPlaca.getValue().toString());
                     this.vistaEditarDatosVehiculo.setVisible(true);
 
@@ -248,7 +248,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
                             opcionTituloConfirmar,
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
-
+                    //REGISTRO DE PLACA EXSISTENTE
                     if (JOptionPane.OK_OPTION == confirmar) {
                         this.vistaEditarDatosVehiculo.setVisible(false);
                         Calendar c = Calendar.getInstance();
@@ -256,8 +256,10 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(null, "TICKET " + mensajeTicket, "TICKET", JOptionPane.INFORMATION_MESSAGE);
                         listarTickets();
                     } else if (confirmar == 1) {
+                        //PERMITE EDITAR LOS DATOS DEL VEHICULO
                         this.setVisible(false);
                     } else {
+                        //SE CANCELA EL INGRESO DEL TICKET
                         this.vistaEditarDatosVehiculo.setVisible(false);
                     }
                 } else {
@@ -269,6 +271,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
                     if (JOptionPane.OK_OPTION == confirmar) {
                         this.setVisible(false);
+                        //ENVIA LA VISTA PARA CREAR UN NUEVO VEHICULO
                         vistaAgregarVehiculo.setPlaca(ftxPlaca.getValue());
                         vistaAgregarVehiculo.setVisible(true);
                         ftxPlaca.setValue("");
@@ -279,7 +282,8 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_ftxPlacaKeyTyped
-
+    
+    //METODO PARA FORMATO DE TABLA 
     private void listarTickets() {
         DefaultTableModel modeloTabla = (DefaultTableModel) tblTickets.getModel();
         modeloTabla.setColumnCount(0);
@@ -312,7 +316,7 @@ public class VistaIngresoParqueadero extends javax.swing.JInternalFrame {
         }
         this.tblTickets.setModel(modeloTabla);
     }
-
+    //CAMBIO DE FECHA A CIERTO FORMATO
     private String fechaActual(Date fecha) {
         String strDateFormat = "dd-MM-yyyy HH: mm: ss";
         SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);

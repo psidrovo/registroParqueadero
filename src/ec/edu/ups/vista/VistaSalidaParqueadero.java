@@ -214,19 +214,23 @@ public class VistaSalidaParqueadero extends javax.swing.JInternalFrame {
 
     private void ftxCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxCodigoKeyTyped
         char validar = evt.getKeyChar();
+        //VALIDA ENTER
         if (validar == '\n') {
+            //VALIDA EL FORMATO DEL CODIGO
             if (ftxCodigo.getValue() != null) {
                 int codigo = Integer.valueOf(ftxCodigo.getValue().toString());
+                //VALIDA SI CODIGO EXISTE
                 if (controladorTicket.verTicketPorCodigo(codigo) != null) {
                     Calendar c = Calendar.getInstance();
                     Ticket mensaje = controladorTicket.calcularPago(codigo, c.getTime());
                     int confirmar = JOptionPane.showConfirmDialog(null,
                             "<html>" + mensajeSalida1 + " <strong>" + mensaje.getTotal() + "</strong> " + mensajeSalida2 + " <strong>" + mensaje.getMinutos() + "</strong> " + mensajeSalida3 + " <strong> " + mensaje.getFracciones() + "</strong> " + mensajeSalida4 + "</html> \n" + mensajeSalida5);
-
+                    //SI ES SE ELIJE "SI" SE PROCESA SALIR EL TICKET 
                     if (JOptionPane.OK_OPTION == confirmar) {
                         controladorTicket.salidaVehiculoTicket(codigo, c.getTime());
                         listarTickets();
                         ftxCodigo.setValue(0);
+                    //SI NO SETEA LOS VALORES DEL CALCULO DE TIEMPO 
                     } else {
                         mensaje.setFechaHoraSalida(null);
                         mensaje.setMinutos(0);

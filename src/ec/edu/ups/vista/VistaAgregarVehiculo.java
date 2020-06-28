@@ -191,15 +191,19 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
         if (ftxPlaca.getValue() == null) {
+            //SI ES NULL ESTA MAL FORMTIADO LA PLACA
             JOptionPane.showMessageDialog(null, mensajeErrorPlaca, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
         } else {
+            //VALIDACION DE CAMPOS
             if (txtCedula.getText().equals("") || txtMarca.getText().equals("") || txtModelo.getText().equals("") || ftxPlaca.getValue().toString().equals("")) {
                 JOptionPane.showMessageDialog(null, mensajeErrorDatos, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
             } else {
+                //PLACA YA EXISTE 
                 if (controladorVehiculo.buscarVehiculo(ftxPlaca.getValue().toString()) != null) {
                     JOptionPane.showMessageDialog(null, "<html>"+mensajeExistePlaca1+" <strong>" + ftxPlaca.getValue() + "</strong> "+mensajeExistePlaca2+"</html>", "ERROR DATOS", JOptionPane.ERROR_MESSAGE);
 
                 } else {
+                    //CREA UN NUEVO VEHICULO Y UN NUEVO TICKET
                     controladorCliente.crearVehiculo(ftxPlaca.getValue().toString(), txtMarca.getText(), txtModelo.getText(), txtCedula.getText());
                     this.setVisible(false);
                     Calendar c = Calendar.getInstance();
@@ -224,12 +228,15 @@ public class VistaAgregarVehiculo extends javax.swing.JInternalFrame {
     }
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char validar = evt.getKeyChar();
+        //RECONOCE SI ES QUE EL USUARIO A USADO EL ENTER
         if (validar == '\n') {
+            //SI LA CEDULA EXISTE SE HABLITA LOS CAMPOS DEL VEHICULO
             if (controladorCliente.verCliente(txtCedula.getText()) != null) {
                 ftxPlaca.setEnabled(true);
                 txtMarca.setEnabled(true);
                 txtModelo.setEnabled(true);
             } else {
+                //PREGUNTA SI SE DESEA CREAR UN NUVEO CLIENTE
                 int confirmar = JOptionPane.showConfirmDialog(null,
                         "<html>"+mensajeNoExisteCedula+" <strong>" + txtCedula.getText() + "</strong> "+mensajeResgistrarCliente+"</html>");
 

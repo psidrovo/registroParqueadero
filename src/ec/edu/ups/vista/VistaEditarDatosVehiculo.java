@@ -284,9 +284,11 @@ public void setCambiarIdioma(ResourceBundle mensajes) {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+        //VALID CAMPOS VACIOS
         if (txtCedula.getText().equals("") || txtDireccion.getText().equals("") || txtNombre.getText().equals("") || txtTelefono.getText().equals("")) {
             JOptionPane.showMessageDialog(null, mensajeErrorDatos, tituloErrorDatos, JOptionPane.ERROR_MESSAGE);
         } else {
+            //VALIDA SI CLIENTE EXISTE 
             if (controladorCliente.verCliente(txtCedula.getText()) == null) {
 
                 controladorCliente.crearCliente(txtCedula.getText(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
