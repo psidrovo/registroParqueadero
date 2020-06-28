@@ -261,5 +261,63 @@ También se creo un evento al momento de seleccionar el botón registrar.
 
 	btRegistrarActionPerformed: este evento primero valida que todos los campos este completo. Después valida si la cedula existe. Si es que la cedula existe aparecerá un panel de error, caso contrario se creará un cliente nuevo y le retornará a la vistaAgregarVehiculo.
 
- 
+**21.	VistaSalidaTicket**
+En esta interfaz se importaron todas las clases de los paquetes controlador, IDAO, y DAO. También se importan los siguientes paquetes: 
 
+	ec.edu.ups.controlador.ControladorCliente;
+	ec.edu.ups.controlador.ControladorTicket;
+	ec.edu.ups.controlador.ControladorVehiculo;
+	ec.edu.ups.modelo.Cliente;
+	ec.edu.ups.modelo.Ticket;
+	ec.edu.ups.modelo.Vehiculo;
+	java.text.SimpleDateFormat;
+	java.util.Calendar;
+	java.util.Date;
+	java.util.ResourceBundle;
+	javax.swing.JOptionPane;import javax.swing.table.DefaultTableModel;
+	
+En esta interfaz instanciamos como atributos todas las interfaces de tipo JInternalFrameForm, también se instanciaron todas las clases de los paquetes IDAO y controladores como atributos. Por último, se instanciaron las clases ResourceBundle y Locale como atributos. 
+También tiene los siguientes métodos internos, estos son creados y otros generados.
+
+	setCambiarIdioma-> Se encarga de hacer el cambio de idioma, recibe el ResourceBundle de la vista principal.
+	ftxCodigoKeyTyped -> Se encarga de ejecutar la salida del ticket cuando el usuario da enter
+	listarTickets -> Se encarga de dar un modelo a la tabla, además de cargar los datos de los tickets que ya están como salida.
+	fechaActual -> Se encarga de cambiar el formato de la fecha que recibe a String.
+	formInternalFrameActivated -> Se ejecuta cuando gana visibilidad, cargando todos los tickets que se hayan registrado como salida
+
+**22.	VistaListarTicket**
+En esta interfaz se importaron todas las clases de los paquetes controlador, IDAO, y DAO. También se importan los siguientes paquetes: 
+
+	ec.edu.ups.modelo.Ticket;
+	ec.edu.ups.modelo.Vehiculo;
+	java.text.SimpleDateFormat;
+	java.util.Date;
+	javax.swing.table.DefaultTableModel;
+	ec.edu.ups.controlador.*;
+	java.util.ResourceBundle;
+
+En esta interfaz instanciamos como atributos todas las interfaces de tipo JInternalFrameForm, también se instanciaron todas las clases de los paquetes IDAO y controladores como atributos. Por último, se instanciaron las clases ResourceBundle y Locale como atributos. 
+También tiene los siguientes métodos internos, estos son creados y otros generados.
+
+	setCambiarIdioma-> Se encarga de hacer el cambio de idioma, recibe el ResourceBundle de la vista principal.
+	listarTickets -> Se encarga de dar un modelo a la tabla, además de cargar los datos de los tickets que ya están como salida.
+	fechaActual -> Se encarga de cambiar el formato de la fecha que recibe a String.
+	formInternalFrameActivated -> Se ejecuta cuando gana visibilidad, cargando todos los tickets 
+ 
+**23.	VistaEditarDatosVehiculo**
+En esta interfaz se importaron todas las clases de los paquetes controlador, IDAO, y DAO. También se importan los siguientes paquetes:
+
+	ec.edu.ups.controlador.*;
+	ec.edu.ups.modelo.*;
+	java.util.Calendar;
+	java.util.ResourceBundle;
+	javax.swing.JOptionPane;
+En esta interfaz instanciamos como atributos todas las interfaces de tipo JInternalFrameForm, también se instanciaron todas las clases de los paquetes IDAO y controladores como atributos. Por último, se instanciaron las clases ResourceBundle y Locale como atributos. 
+También tiene los siguientes métodos internos, estos son creados y otros generados.
+
+	setCambiarIdioma-> Se encarga de hacer el cambio de idioma, recibe el ResourceBundle de la vista principal.
+	setPlaca-> Es utilizado para cargar la placa del vehículo ingresado
+	setVistaIngreso-> Setea la vista ingreso parqueadero
+	formInternalFrameActivated -> Se ejecuta cuando gana visibilidad, cargando todos los datos del vehiculo en la vista
+	btGuardarActionPerformed -> Se encarga de guardar los datos validando si ya existe o no.
+	btCancelarActionPerformed -> Se encarga de cerrar la vista al cancelar
