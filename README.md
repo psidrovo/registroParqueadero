@@ -202,4 +202,64 @@ También se ha creado distintos eventos
 	menuItemInglesActionPreformed: se instancia un nuevo Locale con el idioma ingles y la localización de Estados Unidos. También se llama al ResourceBundle que consiga los datos del paquete de idiomas y se llama al método de cambiarIdiomaTodasLasVentanas. 
 	menuItemEspañolActionPreformed: se instancia un nuevo Locale con el idioma español y la localización de Ecuador. También se llama al ResourceBundle que consiga los datos del paquete de idiomas y se llama al método de cambiarIdiomaTodasLasVentanas
  
+**18.	VistaIngresoParquedero (JInternalFrameForm)**
+En esta interfaz se importaron todas las clases de los paquetes controlador, IDAO, y DAO. También se importan los siguientes paquetes:
+
+	java.awt.Dimension 
+	java.text.ParseException
+	java.text.SimpleDataFormat
+	java.util.Calander
+	java.util.Date
+	java.util.ResourceBundle
+	javax.swing.JOptionPane
+	javax.swing.JTable
+	javax.swing.table.DefaultTableModel
+	
+Se instanciaron todos los controladores, la VistaAgregarVehiculo, VistaEditarDatosVehiculo y aparte se instanciaron varios Strings para poder manipular el lenguaje de los optionPanel al momento de cambiar de lenguaje. 
+Se crearon tres métodos todos privados.
+
+	El primero método “setCambiarIdioma” recibe el ResourceBundle y configura el idioma de todos los label y option panel. 
+	El segundo método “listarTickets” configura la información de la tabla y la actualiza cada vez. De esta manera el usuario puede visualizar los datos del vehículo y del cliente. 
+	El tercer método “fechaActual” reciebe en sus parámetros un Date. Este método consigue la información de la fecha y hora del computador y lo retorna para poder configurarlo como la fecha de entrada del vehículo
+	
+También se creo un evento “KeyEvent” en la cual el usuario al presionar “Enter” en el teclado valida la placa que ingreso tiene el formato valido, después valida si es que la placa existe. Si cumple esta condiciones aparecerá un option panel en la cual le preguntara al usuario si quiere crear un ticket con esos datos o si desea editar los datos de ese vehículo. Si es que no cumpliera la condición apereceria un opción panel pidiéndole que cree un nuevo vehículo. Al seleccionar “si” esta cerraría le ventana de VistaIngresoParqueadero y visualizaría la ventana de vistaAgregarVehiculo.
+ 
+**19.	VistaAgregarVehiculo (JInternalFrameForm)**
+En esta interfaz se importaron todas las clases del paquete controlador. También se importan los siguientes paquetes:
+
+	java.util.Calander
+	java.util.ResourceBundle
+	javax.swing.JOptionPane
+	
+Se instanciaron todos los controladores, la VistaAgregarCliente, VistaIngresoParqueadero y aparte se instanciaron varios Strings para poder manipular el lenguaje de los option panel al momento de cambiar de lenguaje. 
+En esta interfaz se crearon 4 metodos:
+
+	setCambiarIdioma: reciebe un ResourceBundle en su parámetro y este ayuda a cambiar el idioma de todos los labeles y option panel.
+	setEditarCamposRegresarCliente: este recibe una cedula en su parametro. Esta configura que se puedan ingresar datos en las demás áreas a excepción del área donde se ingresa la cedula. 
+	setVistaIngresoParqueadero: este recibe en su parámetro la VistaIngresoParqueadero. Este método solo contiene la VistaIngresoParqueadero
+	setPlaca: este recibe en su parámetro una placa. Este método no permite editar los datos de los text box a excepción de la cedula. 
+También se crearon dos eventos:
+
+	btRegistrarActionPerformed: este evento primero valida que la placa que ingreso este bien formateado. Si es que no cumple con la validación pide al usuario que ingres los datos y el programa procede a validarlas. Si es que la placa que ingreso ya existe aparecerá como error. Si es que la placa que ingreso no existe procederá a crear un nuevo vehículo y crear un nuevo ticket para ese vehículo.  
+	txtCedulaKeyTyped: al momento que el usuario presiona en “Enter” valida que la cedula ingresado exista, si es que existe dentro del programa permite que el usuario pueda editar los datos del vehículo. Si es que la cedula no existe el programa le pregunta al usuario si quiere registrar al cliente y se dejara de visualizar VistaAgregarVehiculo y se visualizara la ventana vistaAgregarCliente.
+ 
+**20.	VistaAgregarCliente (JInternalFrameForm)**
+En esta interfaz se importaron todas las clases del paquete controlador. También se importan los siguientes paquetes:
+
+	java.util.ResourceBundle
+	javax.swing.JOptionPane
+	
+Se instanciaron todos los controladores, la VistaAgregarVehiculo y aparte se instanciaron varios Strings para poder manipular el lenguaje de los option panel al momento de cambiar de lenguaje. 
+En esta interfaz se crearon 4 metodos: 
+
+	setCambiarIdioma: recibe un ResourceBundle en sus parámetros. Este método ayuda a cambiar el idioma de los labels y de los option panel. 
+	limpiar: este método vacia los textbox.
+	setCedulaVista: recibe en susu parámetros una cedula. Este método ayuda a pasar los datos a la siguiente vista. 
+	setVistaAgregarVehiculo: en su parámetros recibe VistaAgregarVehiculo. Este ayuda a configurar las vista dentro de esta misma. 
+	
+También se creo un evento al momento de seleccionar el botón registrar. 
+
+	btRegistrarActionPerformed: este evento primero valida que todos los campos este completo. Después valida si la cedula existe. Si es que la cedula existe aparecerá un panel de error, caso contrario se creará un cliente nuevo y le retornará a la vistaAgregarVehiculo.
+
+ 
 
